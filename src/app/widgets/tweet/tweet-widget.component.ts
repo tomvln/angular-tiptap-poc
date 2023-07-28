@@ -1,18 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  AbstractWidgetComponent,
-  WidgetInterface,
-} from '../abstract-widget.component';
+import { AngularNodeViewComponent } from 'ngx-tiptap';
+import { WidgetInterface } from '../widget.interface';
 
 @Component({
   selector: 'app-tweet-widget',
   templateUrl: 'tweet-widget.component.html',
-  providers: [
-    { provide: AbstractWidgetComponent, useExisting: TweetWidgetComponent },
-  ],
 })
 export class TweetWidgetComponent
-  extends AbstractWidgetComponent
+  extends AngularNodeViewComponent
   implements WidgetInterface, OnInit
 {
   name = 'Tweet';

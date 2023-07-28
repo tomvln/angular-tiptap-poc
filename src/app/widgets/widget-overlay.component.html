@@ -1,7 +1,6 @@
-<div *ngIf="loaded" class="container">
-  name : {{widget?.[0]?.name}}
+<div class="container">
   <ng-content></ng-content>
   <div class="overlay">
-    <span>{{ widget?.name }}</span>
+    <small>Widget: {{ name }}</small>
   </div>
 </div>

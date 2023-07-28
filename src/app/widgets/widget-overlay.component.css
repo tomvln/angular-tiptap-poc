@@ -5,17 +5,23 @@
 .overlay {
   content: '';
   display: block;
-  opacity: 0;
-  transition: opacity 0.2s ease-in-out;
-  background-color: red;
-  border: 5px solid green;
+  transition: border 0.2s ease-in-out;
+  border: 1px solid transparent;
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
+  cursor: pointer;
 }
 
 .overlay:hover {
-  opacity: 1;
+  border: 1px solid black;
+}
+
+.overlay small {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
