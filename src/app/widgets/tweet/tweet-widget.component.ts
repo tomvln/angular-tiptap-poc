@@ -7,6 +7,9 @@ import {
 @Component({
   selector: 'app-tweet-widget',
   templateUrl: 'tweet-widget.component.html',
+  providers: [
+    { provide: AbstractWidgetComponent, useExisting: TweetWidgetComponent },
+  ],
 })
 export class TweetWidgetComponent
   extends AbstractWidgetComponent

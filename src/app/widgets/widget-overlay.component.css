@@ -5,7 +5,7 @@
 .overlay {
   content: '';
   display: block;
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.2s ease-in-out;
   background-color: red;
   border: 5px solid green;

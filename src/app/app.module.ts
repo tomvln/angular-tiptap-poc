@@ -8,10 +8,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { TweetWidgetComponent } from './widgets/tweet/tweet-widget.component';
 import { NgxTwitterWidgetsModule } from 'ngx-twitter-widgets';
 import { WidgetOverlayComponent } from './widgets/widget-overlay.component';
-import { AbstractWidgetComponent } from './widgets/abstract-widget.component';
 
 @NgModule({
-  declarations: [AppComponent, AbstractWidgetComponent, WidgetOverlayComponent, TweetWidgetComponent],
+  declarations: [AppComponent, WidgetOverlayComponent, TweetWidgetComponent],
   imports: [
     CommonModule,
     BrowserModule,

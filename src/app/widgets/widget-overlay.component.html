@@ -1,4 +1,5 @@
-<div class="container">
+<div *ngIf="loaded" class="container">
+  sdf
   <ng-content></ng-content>
   <div class="overlay">
     <span>{{ widget.name }}</span>
