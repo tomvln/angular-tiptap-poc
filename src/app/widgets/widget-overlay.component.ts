@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, ContentChild } from '@angular/core';
+import { AfterContentInit, Component, ContentChild, ContentChildren } from '@angular/core';
 import { AbstractWidgetComponent } from './abstract-widget.component';
 
 @Component({
@@ -7,7 +7,7 @@ import { AbstractWidgetComponent } from './abstract-widget.component';
   styleUrls: ['widget-overlay.component.css'],
 })
 export class WidgetOverlayComponent implements AfterContentInit {
-  @ContentChild(AbstractWidgetComponent, { static: false })
+  @ContentChildren(AbstractWidgetComponent)
   widget: AbstractWidgetComponent;
 
   loaded = false;

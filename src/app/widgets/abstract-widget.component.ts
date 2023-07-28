@@ -5,6 +5,7 @@ export interface WidgetInterface {
   name: string;
 }
 
+@Component({ template: '' })
 export class AbstractWidgetComponent
   extends AngularNodeViewComponent
   implements WidgetInterface
