@@ -1,0 +1,78 @@
+<h1>Angular TipTap POC</h1>
+
+<tiptap-editor [editor]="editor" [(ngModel)]="content"></tiptap-editor>
+
+<tiptap-floating-menu [editor]="editor">
+  <div class="floating-menu">
+    <div class="title">Widgets</div>
+    <button (click)="setTweet()">tweet</button>
+  </div>
+</tiptap-floating-menu>
+
+<tiptap-bubble-menu [editor]="editor">
+  <div class="bubble-menu">
+    <div class="title">Style</div>
+    <button
+      (click)="editor.chain().focus().toggleBold().run()"
+      [ngClass]="{ active: editor.isActive('bold') }"
+    >
+      b
+    </button>
+
+    <button
+      (click)="editor.chain().focus().toggleItalic().run()"
+      [ngClass]="{ active: editor.isActive('italic') }"
+    >
+      i
+    </button>
+
+    <button
+      (click)="editor.chain().focus().toggleBulletList().run()"
+      [ngClass]="{ active: editor.isActive('bulletList') }"
+    >
+      ul
+    </button>
+
+    <button
+      (click)="editor.chain().focus().toggleOrderedList().run()"
+      [ngClass]="{ active: editor.isActive('orderedList') }"
+    >
+      ol
+    </button>
+
+    <button (click)="setLink()" [ngClass]="{ active: editor.isActive('link') }">
+      a
+    </button>
+
+    <button
+      (click)="editor.chain().focus().toggleHeading({ level: 2 }).run()"
+      [ngClass]="{ active: editor.isActive('heading', { level: 2 }) }"
+    >
+      h2
+    </button>
+
+    <button
+      (click)="editor.chain().focus().toggleHeading({ level: 3 }).run()"
+      [ngClass]="{ active: editor.isActive('heading', { level: 3 }) }"
+    >
+      h3
+    </button>
+  </div>
+</tiptap-bubble-menu>
+
+<div class="counts">
+  <p>{{ editor.storage.characterCount.characters() }} characters</p>
+  <p>{{ editor.storage.characterCount.words() }} words</p>
+</div>
+
+<ngx-tabs>
+  <ngx-tab [active]="true" name="JSON">
+    <pre>{{ stringify(editor.getJSON()) }}</pre>
+  </ngx-tab>
+  <ngx-tab name="HTML">
+    <pre>{{ formatHtml(editor.getHTML()) }}</pre>
+  </ngx-tab>
+  <ngx-tab name="Text">
+    <pre>{{ editor.getText() }}</pre>
+  </ngx-tab>
+</ngx-tabs>

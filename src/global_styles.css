@@ -1,0 +1,10 @@
+/* Add application styles & imports to this file! */
+.ProseMirror {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.ProseMirror:focus {
+  outline: none;
+}

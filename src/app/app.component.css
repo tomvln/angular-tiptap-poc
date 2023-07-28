@@ -1,0 +1,64 @@
+h1 {
+  margin-bottom: 70px;
+}
+
+.floating-menu,
+.bubble-menu {
+  background: #444;
+  padding: 5px;
+  border-radius: 5px;
+  display: flex;
+  gap: 3px;
+  white-space: nowrap;
+}
+
+.floating-menu .title,
+.bubble-menu .title {
+  color: white;
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size: 10px;
+  text-transform: uppercase;
+  align-self: center;
+  margin-right: 2px;
+}
+
+.floating-menu button,
+.bubble-menu button {
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.floating-menu button.active,
+.bubble-menu button.active {
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.floating-menu button {
+  width: auto;
+}
+
+.bubble-menu button {
+  width: 30px;
+}
+
+.counts {
+  margin-top: 3px;
+}
+
+.counts p {
+  color: #888;
+  font-size: 12px;
+  margin: 0;
+}
+
+ngx-tabs {
+  margin-top: 30px;
+}
