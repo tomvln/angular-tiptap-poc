@@ -1,6 +1,6 @@
-<div class="container" contenteditable="false">
+<div class="container" contenteditable="false" [ngClass]="'align-' + component.node.attrs.textAlign">
   <ng-content></ng-content>
   <div class="overlay" draggable="true" data-drag-handle>
-    <small>Widget: {{ name }}</small>
+    <small>Widget: {{ component.name }}</small>
   </div>
 </div>

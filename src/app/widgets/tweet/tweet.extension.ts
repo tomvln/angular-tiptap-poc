@@ -15,7 +15,7 @@ const TweetExtension = (injector: Injector): Node => {
   return Node.create({
     name: 'tweet-widget',
     group: 'block',
-    content: 'block',
+    content: 'inline*',
     draggable: true,
     selectable: true,
     atom: true,
@@ -42,6 +42,14 @@ const TweetExtension = (injector: Injector): Node => {
     },
     addAttributes() {
       return {
+        textAlign: {
+          default: 'center',
+          renderHTML: (attributes) => {
+            return {
+              textAlign: attributes.textAlign,
+            };
+          },
+        },
         tweetId: {
           default: null,
           renderHTML: (attributes) => {
