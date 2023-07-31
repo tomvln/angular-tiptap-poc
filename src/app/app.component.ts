@@ -14,7 +14,9 @@ import OrderedList from '@tiptap/extension-ordered-list';
 import ListItem from '@tiptap/extension-list-item';
 import CharacterCount from '@tiptap/extension-character-count';
 import History from '@tiptap/extension-history';
+import TextAlign from '@tiptap/extension-text-align';
 import prettifyHTML from 'prettify-html';
+
 
 @Component({
   selector: 'app-root',
@@ -48,6 +50,9 @@ export class AppComponent implements OnDestroy {
       // Extensions
       CharacterCount,
       History,
+      TextAlign.configure({
+        alignments: ['left', 'right'],
+      }),
       // Widgets
       Tweet(this.injector),
     ],

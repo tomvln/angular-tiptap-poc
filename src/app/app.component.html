@@ -16,46 +16,46 @@
       (click)="editor.chain().focus().toggleBold().run()"
       [ngClass]="{ active: editor.isActive('bold') }"
     >
-      b
+      <span class="material-symbols-sharp"> format_bold </span>
     </button>
 
     <button
       (click)="editor.chain().focus().toggleItalic().run()"
       [ngClass]="{ active: editor.isActive('italic') }"
     >
-      i
+      <span class="material-symbols-sharp"> format_italic </span>
     </button>
 
     <button
       (click)="editor.chain().focus().toggleBulletList().run()"
       [ngClass]="{ active: editor.isActive('bulletList') }"
     >
-      ul
+      <span class="material-symbols-sharp"> format_list_bulleted </span>
     </button>
 
     <button
       (click)="editor.chain().focus().toggleOrderedList().run()"
       [ngClass]="{ active: editor.isActive('orderedList') }"
     >
-      ol
+      <span class="material-symbols-sharp"> format_list_numbered </span>
     </button>
 
     <button (click)="setLink()" [ngClass]="{ active: editor.isActive('link') }">
-      a
+      <span class="material-symbols-sharp"> add_link </span>
     </button>
 
     <button
       (click)="editor.chain().focus().toggleHeading({ level: 2 }).run()"
       [ngClass]="{ active: editor.isActive('heading', { level: 2 }) }"
     >
-      h2
+      <span class="material-symbols-sharp"> format_h2 </span>
     </button>
 
     <button
       (click)="editor.chain().focus().toggleHeading({ level: 3 }).run()"
       [ngClass]="{ active: editor.isActive('heading', { level: 3 }) }"
     >
-      h3
+      <span class="material-symbols-sharp"> format_h3 </span>
     </button>
   </div>
 </tiptap-bubble-menu>
