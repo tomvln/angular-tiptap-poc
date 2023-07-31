@@ -19,7 +19,6 @@ const TweetWidgetExtension = (injector: Injector): Node => {
       return [{ tag: 'app-tweet-widget' }];
     },
     renderHTML({ HTMLAttributes }) {
-      delete HTMLAttributes.style;
       return ['app-tweet-widget', HTMLAttributes];
     },
     addNodeView() {
@@ -36,9 +35,6 @@ const TweetWidgetExtension = (injector: Injector): Node => {
     },
     addAttributes() {
       return {
-        textAlign: {
-          default: 'center',
-        },
         tweetId: {
           default: null,
           renderHTML: (attributes) => {

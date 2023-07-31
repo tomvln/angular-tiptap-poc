@@ -21,9 +21,8 @@ const BaseWidgetExtension = Node.create({
       setAlign:
         (align) =>
         ({ commands, tr }) => {
-          return commands.updateAttributes(tr.curSelection.node.type.name, {
-            align,
-          });
+          tr.curSelection.node.attrs.align = align
+          return commands.focus()
         },
     };
   },
@@ -31,11 +30,6 @@ const BaseWidgetExtension = Node.create({
     return {
       align: {
         default: 'center',
-        renderHTML: (attributes) => {
-          return {
-            align: attributes.align,
-          };
-        },
       },
     };
   },

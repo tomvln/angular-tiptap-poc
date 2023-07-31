@@ -11,16 +11,13 @@ export class TweetWidgetComponent
   extends AngularNodeViewComponent
   implements WidgetInterface, OnInit
 {
-  @HostBinding('class') class: string;
-
   name = 'Tweet';
   tweetId: string;
-  textAlign: 'left' | 'center' | 'right';
+  align: 'left' | 'center' | 'right';
 
   ngOnInit() {
     console.log('init')
     this.tweetId = this.node.attrs.tweetId;
-    this.textAlign = this.node.attrs.textAlign;
-    this.class = `${this.class || '' } align-${this.textAlign}`
+    this.align = this.node.attrs.align;
   }
 }

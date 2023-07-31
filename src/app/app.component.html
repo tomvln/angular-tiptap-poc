@@ -82,15 +82,15 @@
     </button>
 
     <button
-      (click)="editor.chain().focus().setTextAlign('center').run()"
-      [ngClass]="{ active: editor.isActive({ textAlign: 'center' }) }"
+      (click)="editor.chain().focus().setAlign('center').run()"
+      [ngClass]="{ active: editor.isActive({ align: 'center' }) }"
     >
       <span class="material-symbols-sharp"> format_align_center </span>
     </button>
 
     <button
-      (click)="editor.chain().focus().setTextAlign('right').run()"
-      [ngClass]="{ active: editor.isActive({ textAlign: 'right' }) }"
+      (click)="editor.chain().focus().setAlign('right').run()"
+      [ngClass]="{ active: editor.isActive({ align: 'right' }) }"
     >
       <span class="material-symbols-sharp"> format_align_right </span>
     </button>

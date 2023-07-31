@@ -15,7 +15,6 @@ import OrderedList from '@tiptap/extension-ordered-list';
 import ListItem from '@tiptap/extension-list-item';
 import CharacterCount from '@tiptap/extension-character-count';
 import History from '@tiptap/extension-history';
-import TextAlign from '@tiptap/extension-text-align';
 import prettifyHTML from 'prettify-html';
 import Dropcursor from '@tiptap/extension-dropcursor';
 import Focus from '@tiptap/extension-focus';
@@ -53,10 +52,6 @@ export class AppComponent implements OnDestroy {
       // Extensions
       CharacterCount,
       History,
-      TextAlign.configure({
-        types: ['tweet-widget'],
-        alignments: ['left', 'center', 'right'],
-      }),
       Dropcursor.configure({
         class: 'drop-cursor',
       }),
