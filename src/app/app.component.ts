@@ -1,7 +1,7 @@
-import 'zone.js/dist/zone';
+import * as content from './editor-content.json';
+import Tweet from './widgets/tweet/tweet.extension';
 import { Component, Injector, OnDestroy, OnInit } from '@angular/core';
 import { Editor } from '@tiptap/core';
-import prettifyHTML from 'prettify-html';
 import Document from '@tiptap/extension-document';
 import Paragraph from '@tiptap/extension-paragraph';
 import Text from '@tiptap/extension-text';
@@ -13,8 +13,8 @@ import BulletList from '@tiptap/extension-bullet-list';
 import OrderedList from '@tiptap/extension-ordered-list';
 import ListItem from '@tiptap/extension-list-item';
 import CharacterCount from '@tiptap/extension-character-count';
-import Tweet from './widgets/tweet/tweet.extension';
-import * as content from './editor-content.json';
+import History from '@tiptap/extension-history';
+import prettifyHTML from 'prettify-html';
 
 @Component({
   selector: 'app-root',
@@ -47,6 +47,7 @@ export class AppComponent implements OnDestroy {
       }),
       // Extensions
       CharacterCount,
+      History,
       // Widgets
       Tweet(this.injector),
     ],

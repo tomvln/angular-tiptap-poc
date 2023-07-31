@@ -16,8 +16,7 @@ const TweetExtension = (injector: Injector): Node => {
     name: 'tweet-widget',
     group: 'block',
     content: 'inline*',
-    selectable: true,
-    atom: true,
+    draggable: true,    
     parseHTML() {
       return [{ tag: 'app-tweet-widget' }];
     },
