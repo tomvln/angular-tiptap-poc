@@ -26,13 +26,6 @@ const BaseWidgetExtension = Node.create({
         },
     };
   },
-  addAttributes() {
-    return {
-      align: {
-        default: 'center',
-      },
-    };
-  },
 });
 
 export default BaseWidgetExtension;

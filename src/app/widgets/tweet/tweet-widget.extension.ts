@@ -35,13 +35,11 @@ const TweetWidgetExtension = (injector: Injector): Node => {
     },
     addAttributes() {
       return {
+        align: {
+          default: 'center',
+        },
         tweetId: {
           default: null,
-          renderHTML: (attributes) => {
-            return {
-              tweetId: attributes.tweetId,
-            };
-          },
         },
       };
     },
