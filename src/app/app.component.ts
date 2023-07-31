@@ -18,6 +18,7 @@ import TextAlign from '@tiptap/extension-text-align';
 import prettifyHTML from 'prettify-html';
 import Dropcursor from '@tiptap/extension-dropcursor';
 import Focus from '@tiptap/extension-focus';
+import Placeholder from '@tiptap/extension-placeholder';
 
 @Component({
   selector: 'app-root',
@@ -42,7 +43,7 @@ export class AppComponent implements OnDestroy {
       OrderedList,
       ListItem,
       // Marks
-      Bold,
+      Bold.configure({}),
       Italic,
       Link.configure({
         protocols: ['http', 'https'],
@@ -58,7 +59,12 @@ export class AppComponent implements OnDestroy {
       Dropcursor.configure({
         class: 'drop-cursor',
       }),
-      Focus,
+      Focus.configure({
+        mode: 'deepest',
+      }),
+      Placeholder.configure({
+        placeholder: 'Please enter the story text here…',
+      }),
       // Widgets
       Tweet(this.injector),
     ],
@@ -96,5 +102,23 @@ export class AppComponent implements OnDestroy {
 
   formatHtml(html: string) {
     return prettifyHTML(html);
+  }
+
+  isWidgetSelected(props) {
+    return (
+      !props.state.selection.empty &&
+      props.state.selection
+        .content()
+        .content.content[0].type.name.includes('widget')
+    );
+  }
+
+  isTextSelected(props) {
+    return (
+      !props.state.selection.empty && props.state.selection.visible &&
+      !props.state.selection
+        .content()
+        .content.content[0].type.name.includes('widget')
+    );
   }
 }

@@ -1,5 +1,27 @@
 .container {
   position: relative;
+  clear: both;
+  width: 66.667%;
+}
+
+.container.align-center {
+  display: block;
+  margin: 0 auto;
+}
+
+.container.align-left,
+.container.align-right {
+  margin-bottom: 10px;
+}
+
+.container.align-left {
+  float: left;
+  margin-right: 10px;
+}
+
+.container.align-right {
+  float: right;
+  margin-left: 10px;
 }
 
 .overlay {
@@ -16,7 +38,7 @@
 }
 
 .overlay:hover,
-:host:focus .overlay {
+::ng-deep .has-focus .overlay {
   border: 1px solid black;
 }
 

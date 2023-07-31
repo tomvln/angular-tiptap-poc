@@ -1,7 +1,9 @@
 <h1>Angular TipTap POC</h1>
 
+<!-- EDITOR -->
 <tiptap-editor [editor]="editor" [(ngModel)]="content"></tiptap-editor>
 
+<!-- NEW LINE MENU -->
 <tiptap-floating-menu [editor]="editor">
   <div class="floating-menu">
     <div class="title">Widgets</div>
@@ -9,9 +11,9 @@
   </div>
 </tiptap-floating-menu>
 
-<tiptap-bubble-menu [editor]="editor">
+<!-- TEXT SELECTION MENU -->
+<tiptap-bubble-menu [editor]="editor" [pluginKey]="'text-menu'" [shouldShow]="isTextSelected">
   <div class="bubble-menu">
-    <div class="title">Style</div>
     <button
       (click)="editor.chain().focus().toggleBold().run()"
       [ngClass]="{ active: editor.isActive('bold') }"
@@ -57,28 +59,41 @@
     >
       <span class="material-symbols-sharp"> format_h3 </span>
     </button>
-
-    <button
-      (click)="editor.chain().focus().setTextAlign('left').run()"
-      [ngClass]="{ active: editor.isActive({ textAlign: 'left' }) }"
-    >
-      <span class="material-symbols-sharp"> format_align_left </span>
-    </button>
-
-    <button
-      (click)="editor.chain().focus().setTextAlign('center').run()"
-      [ngClass]="{ active: editor.isActive({ textAlign: 'center' }) }"
-    >
-      <span class="material-symbols-sharp"> format_align_center </span>
-    </button>
-
-    <button
-      (click)="editor.chain().focus().setTextAlign('right').run()"
-      [ngClass]="{ active: editor.isActive({ textAlign: 'right' }) }"
-    >
-      <span class="material-symbols-sharp"> format_align_right </span>
-    </button>
   </div>
+</tiptap-bubble-menu>
+
+<!-- WIDGET SELECTION MENU -->
+<tiptap-bubble-menu [editor]="editor" [pluginKey]="'widget-menu'" [shouldShow]="isWidgetSelected">
+<div class="bubble-menu">
+  <button
+    (click)="editor.chain().focus().setTextAlign('left').run()"
+    [ngClass]="{ active: editor.isActive({ textAlign: 'left' }) }"
+  >
+    <span class="material-symbols-sharp"> format_align_left </span>
+  </button>
+
+  <button
+    (click)="editor.chain().focus().setTextAlign('center').run()"
+    [ngClass]="{ active: editor.isActive({ textAlign: 'center' }) }"
+  >
+    <span class="material-symbols-sharp"> format_align_center </span>
+  </button>
+
+  <button
+    (click)="editor.chain().focus().setTextAlign('right').run()"
+    [ngClass]="{ active: editor.isActive({ textAlign: 'right' }) }"
+  >
+    <span class="material-symbols-sharp"> format_align_right </span>
+  </button>
+
+  <button
+    (click)="editor.chain().focus().deleteCurrentNode().run()"
+  >
+  <span class="material-symbols-sharp">
+  delete
+  </span>
+  </button>
+</div>
 </tiptap-bubble-menu>
 
 <div class="counts">
