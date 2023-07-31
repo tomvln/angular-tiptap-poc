@@ -49,6 +49,7 @@ const TweetExtension = (injector: Injector): Node => {
               textAlign: attributes.textAlign,
             };
           },
+          rendered: 
         },
         tweetId: {
           default: null,

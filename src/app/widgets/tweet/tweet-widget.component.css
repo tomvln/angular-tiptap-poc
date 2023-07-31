@@ -1,0 +1,18 @@
+:host.align-center {
+  display: block;
+  width: 66.667%;
+  margin: 0 auto;
+}
+
+:host.align-left, :host.align-right {
+  display: inline-block;
+  width: 66.667%;
+}
+
+:host.align-left {
+  float: left;
+}
+
+:host.align-right {
+  float: right;
+}

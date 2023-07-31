@@ -1,17 +1,5 @@
 .container {
   position: relative;
-  width: 66.667%;
-  display: inline-block;
-}
-
-.container.align-left,
-.container.center {
-  margin-right: auto;
-}
-
-.container.align-right,
-.container.center {
-  margin-left: auto;
 }
 
 .overlay {

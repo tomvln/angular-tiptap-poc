@@ -17,6 +17,7 @@ import History from '@tiptap/extension-history';
 import TextAlign from '@tiptap/extension-text-align';
 import prettifyHTML from 'prettify-html';
 import Dropcursor from '@tiptap/extension-dropcursor';
+import Focus from '@tiptap/extension-focus';
 
 @Component({
   selector: 'app-root',
@@ -55,8 +56,9 @@ export class AppComponent implements OnDestroy {
         alignments: ['left', 'center', 'right'],
       }),
       Dropcursor.configure({
-        class: 'drop-cursor'
+        class: 'drop-cursor',
       }),
+      Focus,
       // Widgets
       Tweet(this.injector),
     ],
