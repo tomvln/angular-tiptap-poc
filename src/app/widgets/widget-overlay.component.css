@@ -16,7 +16,7 @@
   cursor: pointer;
 }
 
-.overlay:hover, .overlay:focus {
+.overlay:hover, :host:focus .overlay {
   border: 1px solid black;
 }
 

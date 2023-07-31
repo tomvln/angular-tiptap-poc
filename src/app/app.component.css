@@ -67,9 +67,4 @@ ngx-tabs {
   margin-top: 30px;
 }
 
-.drop-cursor {
-  background-color: transparent !important;
-  border: 5px solid red !important;
-  display: block !important;
-  height: 20px !important;
-}
+

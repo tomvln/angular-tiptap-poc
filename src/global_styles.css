@@ -10,9 +10,14 @@
 }
 
 .material-symbols-sharp {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 200,
-  'GRAD' 200,
-  'opsz' 24
+  font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 24;
+}
+
+.drop-cursor {
+  background-color: transparent !important;
+  border-top: 3px dotted rgb(1, 127, 248);
+}
+
+.tippy-box {
+  max-width: 100% !important;
 }

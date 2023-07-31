@@ -25,7 +25,8 @@
     {
       "type": "tweet-widget",
       "attrs": {
-        "tweetId": "20"
+        "tweetId": "20",
+        "textAlign": "right"
       }
     },
     {
