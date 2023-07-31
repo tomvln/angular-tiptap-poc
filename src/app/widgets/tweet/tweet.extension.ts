@@ -23,10 +23,8 @@ const TweetExtension = (injector: Injector): Node => {
       return [{ tag: 'app-tweet-widget' }];
     },
     renderHTML({ HTMLAttributes }) {
-      return [
-        'app-tweet-widget',
-        mergeAttributes(this.options.HTMLAttributes, HTMLAttributes),
-      ];
+      delete HTMLAttributes.style;
+      return ['app-tweet-widget', HTMLAttributes];
     },
     addNodeView() {
       return AngularNodeViewRenderer(TweetWidgetComponent, { injector });
@@ -43,7 +41,12 @@ const TweetExtension = (injector: Injector): Node => {
     addAttributes() {
       return {
         textAlign: {
-          default: 'center'
+          default: 'center',
+          renderHTML: (attributes) => {
+            return {
+              textAlign: attributes.textAlign,
+            };
+          },
         },
         tweetId: {
           default: null,

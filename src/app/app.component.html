@@ -12,7 +12,11 @@
 </tiptap-floating-menu>
 
 <!-- TEXT SELECTION MENU -->
-<tiptap-bubble-menu [editor]="editor" [pluginKey]="'text-menu'" [shouldShow]="isTextSelected">
+<tiptap-bubble-menu
+  [editor]="editor"
+  [pluginKey]="'text-menu'"
+  [shouldShow]="isTextSelected"
+>
   <div class="bubble-menu">
     <button
       (click)="editor.chain().focus().toggleBold().run()"
@@ -63,44 +67,50 @@
 </tiptap-bubble-menu>
 
 <!-- WIDGET SELECTION MENU -->
-<tiptap-bubble-menu [editor]="editor" [pluginKey]="'widget-menu'" [shouldShow]="isWidgetSelected">
-<div class="bubble-menu">
-  <button
-    (click)="editor.chain().focus().setTextAlign('left').run()"
-    [ngClass]="{ active: editor.isActive({ textAlign: 'left' }) }"
-  >
-    <span class="material-symbols-sharp"> format_align_left </span>
-  </button>
+<tiptap-bubble-menu
+  [editor]="editor"
+  [pluginKey]="'widget-menu'"
+  [shouldShow]="isWidgetSelected"
+>
+  <div class="bubble-menu">
+    <button
+      (click)="editor.chain().focus().setTextAlign('left').run()"
+      [ngClass]="{ active: editor.isActive({ textAlign: 'left' }) }"
+    >
+      <span class="material-symbols-sharp"> format_align_left </span>
+    </button>
 
-  <button
-    (click)="editor.chain().focus().setTextAlign('center').run()"
-    [ngClass]="{ active: editor.isActive({ textAlign: 'center' }) }"
-  >
-    <span class="material-symbols-sharp"> format_align_center </span>
-  </button>
+    <button
+      (click)="editor.chain().focus().setTextAlign('center').run()"
+      [ngClass]="{ active: editor.isActive({ textAlign: 'center' }) }"
+    >
+      <span class="material-symbols-sharp"> format_align_center </span>
+    </button>
 
-  <button
-    (click)="editor.chain().focus().setTextAlign('right').run()"
-    [ngClass]="{ active: editor.isActive({ textAlign: 'right' }) }"
-  >
-    <span class="material-symbols-sharp"> format_align_right </span>
-  </button>
+    <button
+      (click)="editor.chain().focus().setTextAlign('right').run()"
+      [ngClass]="{ active: editor.isActive({ textAlign: 'right' }) }"
+    >
+      <span class="material-symbols-sharp"> format_align_right </span>
+    </button>
 
-  <button
-    (click)="editor.chain().focus().deleteCurrentNode().run()"
-  >
-  <span class="material-symbols-sharp">
-  delete
-  </span>
-  </button>
-</div>
+    <button (click)="editor.chain().focus().createParagraphNear().run()">
+      <span class="material-symbols-sharp"> format_paragraph </span>
+    </button>
+
+    <button (click)="editor.chain().focus().deleteSelection().run()">
+      <span class="material-symbols-sharp"> delete </span>
+    </button>
+  </div>
 </tiptap-bubble-menu>
 
+<!-- COUNTERS -->
 <div class="counts">
   <p>{{ editor.storage.characterCount.characters() }} characters</p>
   <p>{{ editor.storage.characterCount.words() }} words</p>
 </div>
 
+<!-- CONTENT -->
 <ngx-tabs>
   <ngx-tab [active]="true" name="JSON">
     <pre>{{ stringify(editor.getJSON()) }}</pre>

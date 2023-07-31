@@ -27,19 +27,24 @@
 .overlay {
   content: '';
   display: block;
-  transition: border 0.2s ease-in-out;
+  transition: border 0.2s ease-in-out, background-color 0.2s ease-in-out;
   border: 1px solid transparent;
+  background-color: #00000000;
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  cursor: pointer;
+  cursor: grab;
 }
 
 .overlay:hover,
 ::ng-deep .has-focus .overlay {
   border: 1px solid black;
+}
+
+::ng-deep .has-focus .overlay {
+  background-color: #00000044;
 }
 
 .overlay small {

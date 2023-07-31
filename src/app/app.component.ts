@@ -53,7 +53,7 @@ export class AppComponent implements OnDestroy {
       CharacterCount,
       History,
       TextAlign.configure({
-        types: ['heading', 'paragraph', 'tweet-widget'],
+        types: ['tweet-widget'],
         alignments: ['left', 'center', 'right'],
       }),
       Dropcursor.configure({
