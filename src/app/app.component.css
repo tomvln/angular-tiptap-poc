@@ -10,17 +10,11 @@ h1 {
   display: flex;
   gap: 3px;
   white-space: nowrap;
+  color: white;
 }
 
 .floating-menu .title,
 .bubble-menu .title {
-  color: white;
-  font-weight: bold;
-  font-family: sans-serif;
-  font-size: 10px;
-  text-transform: uppercase;
-  align-self: center;
-  margin-right: 2px;
 }
 
 .floating-menu button,

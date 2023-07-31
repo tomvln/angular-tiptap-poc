@@ -41,12 +41,7 @@ const TweetExtension = (injector: Injector): Node => {
     addAttributes() {
       return {
         textAlign: {
-          default: 'center',
-          renderHTML: (attributes) => {
-            return {
-              textAlign: attributes.textAlign,
-            };
-          },
+          default: 'center'
         },
         tweetId: {
           default: null,
