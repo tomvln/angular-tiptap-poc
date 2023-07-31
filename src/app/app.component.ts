@@ -16,7 +16,7 @@ import CharacterCount from '@tiptap/extension-character-count';
 import History from '@tiptap/extension-history';
 import TextAlign from '@tiptap/extension-text-align';
 import prettifyHTML from 'prettify-html';
-
+import Dropcursor from '@tiptap/extension-dropcursor';
 
 @Component({
   selector: 'app-root',
@@ -51,7 +51,11 @@ export class AppComponent implements OnDestroy {
       CharacterCount,
       History,
       TextAlign.configure({
-        alignments: ['left', 'right'],
+        types: ['heading', 'paragraph', 'tweet-widget'],
+        alignments: ['left', 'center', 'right'],
+      }),
+      Dropcursor.configure({
+        class: 'drop-cursor'
       }),
       // Widgets
       Tweet(this.injector),

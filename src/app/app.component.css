@@ -45,6 +45,10 @@ h1 {
   width: auto;
 }
 
+.bubble-menu button {
+  line-height: 0;
+}
+
 .bubble-menu button span {
   font-size: 20px;
 }
@@ -61,4 +65,11 @@ h1 {
 
 ngx-tabs {
   margin-top: 30px;
+}
+
+.drop-cursor {
+  background-color: transparent !important;
+  border: 5px solid red !important;
+  display: block !important;
+  height: 20px !important;
 }

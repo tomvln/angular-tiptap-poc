@@ -1,5 +1,6 @@
 .container {
   position: relative;
+  width: 66.667%
 }
 
 .overlay {
@@ -15,7 +16,7 @@
   cursor: pointer;
 }
 
-.overlay:hover {
+.overlay:hover, .overlay:focus {
   border: 1px solid black;
 }
 
