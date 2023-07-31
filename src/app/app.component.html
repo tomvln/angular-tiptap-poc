@@ -8,7 +8,7 @@
   <div class="floating-menu">
     <span class="material-symbols-sharp title"> widgets </span>
 
-    <button (click)="setTweet()">tweet</button>
+    <button (click)="setTweet()">Tweet</button>
   </div>
 </tiptap-floating-menu>
 
@@ -75,8 +75,8 @@
 >
   <div class="bubble-menu">
     <button
-      (click)="editor.chain().focus().setTextAlign('left').run()"
-      [ngClass]="{ active: editor.isActive({ textAlign: 'left' }) }"
+      (click)="editor.chain().focus().setAlign('left').run()"
+      [ngClass]="{ active: editor.isActive({ align: 'left' }) }"
     >
       <span class="material-symbols-sharp"> format_align_left </span>
     </button>

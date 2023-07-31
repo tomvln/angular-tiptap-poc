@@ -15,6 +15,7 @@ h1 {
 
 .floating-menu .title,
 .bubble-menu .title {
+  font-size: 20px;
 }
 
 .floating-menu button,

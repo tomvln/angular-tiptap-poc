@@ -1,5 +1,6 @@
 import * as content from './editor-content.json';
-import Tweet from './widgets/tweet/tweet.extension';
+import BaseWidget from './widgets/base/base-widget.extension';
+import TweetWidget from './widgets/tweet/tweet-widget.extension';
 import { Component, Injector, OnDestroy, OnInit } from '@angular/core';
 import { Editor } from '@tiptap/core';
 import Document from '@tiptap/extension-document';
@@ -66,7 +67,8 @@ export class AppComponent implements OnDestroy {
         placeholder: 'Please enter the story text here…',
       }),
       // Widgets
-      Tweet(this.injector),
+      BaseWidget,
+      TweetWidget(this.injector),
     ],
   });
 
@@ -115,7 +117,8 @@ export class AppComponent implements OnDestroy {
 
   isTextSelected(props) {
     return (
-      !props.state.selection.empty && props.state.selection.visible &&
+      !props.state.selection.empty &&
+      props.state.selection.visible &&
       !props.state.selection
         .content()
         .content.content[0].type.name.includes('widget')

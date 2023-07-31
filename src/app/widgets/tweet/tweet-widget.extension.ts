@@ -1,6 +1,7 @@
 import { Injector } from '@angular/core';
-import { Node, mergeAttributes } from '@tiptap/core';
+import { Node } from '@tiptap/core';
 import { AngularNodeViewRenderer } from 'ngx-tiptap';
+import BaseWidgetExtension from '../base/base-widget.extension';
 import { TweetWidgetComponent } from './tweet-widget.component';
 
 declare module '@tiptap/core' {
@@ -11,14 +12,9 @@ declare module '@tiptap/core' {
   }
 }
 
-const TweetExtension = (injector: Injector): Node => {
-  return Node.create({
+const TweetWidgetExtension = (injector: Injector): Node => {
+  return BaseWidgetExtension.extend({
     name: 'tweet-widget',
-    group: 'block',
-    content: 'inline*',
-    draggable: true,
-    selectable: true,
-    atom: true,
     parseHTML() {
       return [{ tag: 'app-tweet-widget' }];
     },
@@ -41,7 +37,7 @@ const TweetExtension = (injector: Injector): Node => {
     addAttributes() {
       return {
         textAlign: {
-          default: 'center'
+          default: 'center',
         },
         tweetId: {
           default: null,
@@ -56,4 +52,4 @@ const TweetExtension = (injector: Injector): Node => {
   });
 };
 
-export default TweetExtension;
+export default TweetWidgetExtension;
