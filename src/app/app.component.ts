@@ -21,6 +21,7 @@ import Dropcursor from '@tiptap/extension-dropcursor';
 import Focus from '@tiptap/extension-focus';
 import Placeholder from '@tiptap/extension-placeholder';
 import {defaultMarkdownParser} from "prosemirror-markdown";
+import { Node } from '@tiptap/pm/model'
 
 @Component({
   selector: 'app-root',
@@ -30,7 +31,7 @@ import {defaultMarkdownParser} from "prosemirror-markdown";
 export class AppComponent implements OnDestroy {
   name = 'Angular';
 
-  content = defaultMarkdownParser.parse(content); // can be HTML or JSON, see https://www.tiptap.dev/api/editor#content
+  content = (defaultMarkdownParser.parse(content) as Node).; // can be HTML or JSON, see https://www.tiptap.dev/api/editor#content
 
   editor = new Editor({
     extensions: [
