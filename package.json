@@ -44,6 +44,7 @@
     "ngx-twitter-widgets": "^1.0.3",
     "prettify-html": "^0.0.2",
     "rxjs": "^7.8.1",
+    "tiptap-markdown": "^0.8.2",
     "tslib": "^2.6.0",
     "zone.js": "^0.13.1"
   },

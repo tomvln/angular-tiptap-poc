@@ -1,4 +1,5 @@
-import * as content from './editor-content.json';
+// import * as content from './editor-content.json';
+import content from './editor-content.md';
 import BaseWidget from './widgets/base/base-widget.extension';
 import TweetWidget from './widgets/tweet/tweet-widget.extension';
 import { Component, Injector, OnDestroy, OnInit } from '@angular/core';
@@ -19,6 +20,7 @@ import prettifyHTML from 'prettify-html';
 import Dropcursor from '@tiptap/extension-dropcursor';
 import Focus from '@tiptap/extension-focus';
 import Placeholder from '@tiptap/extension-placeholder';
+import { Markdown } from 'tiptap-markdown';
 
 @Component({
   selector: 'app-root',
@@ -61,6 +63,7 @@ export class AppComponent implements OnDestroy {
       Placeholder.configure({
         placeholder: 'Please enter the story text here…',
       }),
+      Markdown,
       // Widgets
       BaseWidget,
       TweetWidget(this.injector),
