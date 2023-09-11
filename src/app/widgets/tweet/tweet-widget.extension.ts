@@ -3,7 +3,7 @@ import { Node } from '@tiptap/core';
 import { AngularNodeViewRenderer } from 'ngx-tiptap';
 import BaseWidgetExtension from '../base/base-widget.extension';
 import { TweetWidgetComponent } from './tweet-widget.component';
-import * as tweetWidgetMarkdownit from './tweet-widget.markdownit'
+import * as tweetWidgetMarkdownit from './tweet-widget.markdownit';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
@@ -46,15 +46,15 @@ const TweetWidgetExtension = (injector: Injector): Node => {
     },
     addStorage() {
       return {
-          markdown: {
-              parse: {
-                  setup(markdownit) {
-                          markdownit.use(tweetWidgetMarkdownit);
-                  },
-              }
-          }
-      }
-  },
+        markdown: {
+          parse: {
+            setup(markdownit) {
+              markdownit.use(tweetWidgetMarkdownit);
+            },
+          },
+        },
+      };
+    },
   });
 };
 

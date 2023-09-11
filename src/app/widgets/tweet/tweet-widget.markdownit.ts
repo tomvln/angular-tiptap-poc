@@ -1,6 +1,4 @@
-import * as md from 'markdown-it';
-
-function widgetPlugin(md, options) {
+export function tweetWidgetMarkdownit(md, options) {
   function parseParams(str) {
     const params = {};
     str.replace(/(\w+)="([^"]*)"/g, function (match, key, value) {
@@ -9,12 +7,12 @@ function widgetPlugin(md, options) {
     return params;
   }
 
-  function widget(state, startLine, endLine, silent) {
+  function tweet(state, startLine, endLine, silent) {
     const pos = state.bMarks[startLine] + state.tShift[startLine];
     const max = state.eMarks[startLine];
 
-    // Check if the line starts with "{{widget"
-    if (pos + 8 > max || state.src.slice(pos, pos + 8) !== '{{widget')
+    // Check if the line starts with "{{tweet"
+    if (pos + 7 > max || state.src.slice(pos, pos + 7) !== '{{tweet')
       return false;
 
     // Find the end of the block
@@ -25,16 +23,21 @@ function widgetPlugin(md, options) {
     }
 
     const content = state.src.slice(pos, state.eMarks[nextLine - 1]);
+    console.log('content', content)
 
-    const params = parseParams(content.slice(8, -2).trim());
+    const params = parseParams(content.slice(7, -2).trim());
+    console.log('params', params)
 
     // silent mode is for probing, and we should not output anything
     if (!silent) {
       // create token
-      const token = state.push('widget', '', 0);
-      token.info = params;
-      token.map = [startLine, nextLine];
-      token.markup = content;
+      const token = state.push('tweet', '', 0);
+      token.attrs = {
+        tweetId: params['id'],
+        align: params['align']
+      }
+
+      console.log('token', token)
     }
 
     state.line = nextLine;
@@ -42,15 +45,12 @@ function widgetPlugin(md, options) {
     return true;
   }
 
-  md.block.ruler.before('fence', 'widget', widget, {
-    alt: ['paragraph', 'reference', 'blockquote', 'list'],
-  });
+  md.block.ruler.before('fence', 'tweet', tweet);
 
-  md.renderer.rules.widget = function (tokens, idx) {
+  md.renderer.rules.tweet = function(tokens, idx) {
     const token = tokens[idx];
+    console.log('token', tokens)
     // Here you can render the token to HTML, using the attributes from token.info
-    return `<div class="widget" data-attr1="${token.info.attr1}" data-attr2="${token.info.attr2}"></div>`;
+    return {type: 'tweet-widget'};
   };
 }
-
-md.use(widgetPlugin);
