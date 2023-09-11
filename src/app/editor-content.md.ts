@@ -1,4 +1,4 @@
-“I’m talking about the commodification of race, like race as this thing that has been used to determine value.”
+export const content = `“I’m talking about the commodification of race, like race as this thing that has been used to determine value.”
 
 Zora J Murff’s thought-provoking photographic work, which tackles Black representation in the US, has just gone [**on show at London’s Saatchi Gallery**](https://www.saatchigallery.com/exhibition/america_in_crisis).
 
@@ -66,3 +66,4 @@ Murff doesn’t have one key takeaway for those viewing his work in London. Rath
 “There are people who will come to it, who will understand it, and can use it as a way of just feeling acknowledged and commiserating with me.”
 
 \*\*‘America in Crisis,’ organised by the Saatchi Gallery, runs from 21 January to 3 April 2022. The exhibition is curated by: Sophie Wright, Gregory Harris from Atlanta’s High Museum of Art, and academic Tara Pixley.  \*\*
+`;
