@@ -23,7 +23,7 @@ function markdownitTweetParser(state, startLine, endLine, silent) {
   // Find the end of the block
   let nextLine = startLine;
   while (nextLine < endLine) {
-    if (state.sCount[nextLine] < state.blkIndent) break;
+    if (state.src.slice(state.eMarks[nextLine], -2) !== '}}') break;
     nextLine++;
   }
 
