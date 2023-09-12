@@ -20,8 +20,8 @@ import prettifyHTML from 'prettify-html';
 import Dropcursor from '@tiptap/extension-dropcursor';
 import Focus from '@tiptap/extension-focus';
 import Placeholder from '@tiptap/extension-placeholder';
+import Markdown from 'tiptap-markdown'
 //import { parseMdToJson } from './markdown/parse-md-to-json';
-import {defaultMarkdownParser} from "prosemirror-markdown"
 
 @Component({
   selector: 'app-root',
@@ -31,8 +31,8 @@ import {defaultMarkdownParser} from "prosemirror-markdown"
 export class AppComponent implements OnInit, OnDestroy {
   name = 'Angular';
 
-  //content = content; // can be HTML or JSON, see https://www.tiptap.dev/api/editor#content
-  content;
+  content = content; // can be HTML or JSON, see https://www.tiptap.dev/api/editor#content
+  //content;
 
   editor = new Editor({
     extensions: [
@@ -65,6 +65,7 @@ export class AppComponent implements OnInit, OnDestroy {
       Placeholder.configure({
         placeholder: 'Please enter the story text here…',
       }),
+      Markdown,
       // Widgets
       BaseWidget,
       TweetWidget(this.injector),
@@ -76,9 +77,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     //this.content = parseMdToJson(content);
 
-      const json = defaultMarkdownParser.parse(content)
-
-      console.log('json', json)
+      //const json = defaultMarkdownParser.parse(content)
   }
 
   ngOnDestroy(): void {
