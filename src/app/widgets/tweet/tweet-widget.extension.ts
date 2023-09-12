@@ -25,11 +25,13 @@ function markdownitTweetParser(state, startLine, endLine, silent) {
   while (nextLine < endLine) {
     console.log('nextLine', nextLine);
     const endNextLine = state.eMarks[nextLine];
-    console.log(state.src.slice(endNextLine - 2, endNextLine));
-    console.log(state.src.slice(endNextLine - 2, endNextLine) === '}}');
+    console.log('end line', state.src.slice(endNextLine - 2, endNextLine));
+    console.log('end line === }}', state.src.slice(endNextLine - 2, endNextLine) === '}}');
+    console.log('condition', state.sCount[nextLine] < state.blkIndent)
     if (state.sCount[nextLine] < state.blkIndent) break;
     nextLine++;
   }
+  console.log('nextLine ok', nextLine);
 
   const content = state.src.slice(pos, state.eMarks[nextLine - 1]);
 
