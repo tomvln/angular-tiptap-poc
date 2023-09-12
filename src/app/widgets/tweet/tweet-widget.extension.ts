@@ -23,10 +23,11 @@ function markdownitTweetParser(state, startLine, endLine, silent) {
   // Find the end of the block
   let nextLine = startLine;
   while (nextLine < endLine) {
-    console.log('nextLine', nextLinsdfe);
+    console.log('nextLine', nextLine);
     const endNextLine = state.eMarks[nextLine];
-    if (state.src.slice(state.eMarks[nextLine], -2) === '}}') break;
-    if (state.src.slice(state.eMarks[nextLine], -2) === '}}') break;
+    console.log(state.src.slice(endNextLine - 2, endNextLine));
+    console.log(state.src.slice(endNextLine - 2, endNextLine) === '}}');
+    if (state.sCount[nextLine] < state.blkIndent) break;
     nextLine++;
   }
 
