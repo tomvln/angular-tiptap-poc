@@ -57,7 +57,7 @@ Murff doesn’t have one key takeaway for those viewing his work in London. Rath
 
 “There are people who will come to it, who will understand it, and can use it as a way of just feeling acknowledged and commiserating with me.”
 
-**‘America in Crisis,’ organised by the Saatchi Gallery, runs from 21 January to 3 April 2022. The exhibition is curated by: Sophie Wright, Gregory Harris from Atlanta’s High Museum of Art, and academic Tara Pixley.  **
+**_‘America in Crisis,’_ organised by the Saatchi Gallery, runs from 21 January to 3 April 2022. The exhibition is curated by: Sophie Wright, Gregory Harris from Atlanta’s High Museum of Art, and academic Tara Pixley.**
 
 {{tweet id="20" ratio="auto" align="center" size="fullwidth" caption="caption example" }}
 `;
