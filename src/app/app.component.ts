@@ -94,10 +94,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   setTweet() {
-    const tweetId = window.prompt('tweet id :');
+    const id = window.prompt('tweet id :');
 
-    if (tweetId) {
-      this.editor.chain().focus().setTweet({ tweetId }).run();
+    if (id) {
+      this.editor.chain().focus().setTweet({ id }).run();
     }
   }
 

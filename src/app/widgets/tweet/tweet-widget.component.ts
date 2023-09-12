@@ -12,12 +12,12 @@ export class TweetWidgetComponent
   implements WidgetInterface, OnInit
 {
   name = 'Tweet';
-  tweetId: string;
+  id: string;
   align: 'left' | 'center' | 'right';
 
   ngOnInit() {
     console.log('init')
-    this.tweetId = this.node.attrs.tweetId;
+    this.id = this.node.attrs.id;
     this.align = this.node.attrs.align;
   }
 }
