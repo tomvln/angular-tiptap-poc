@@ -12,6 +12,15 @@ declare module '@tiptap/core' {
   }
 }
 
+const markdownitTweetParser = (state, silent) => {
+
+  return false
+}
+
+const markdownitTweet = (md) => {
+  md.inline.ruler.after('emphasis', 'tweet', markdownitTweetParser);
+};
+
 const TweetWidgetExtension = (injector: Injector): Node => {
   return BaseWidgetExtension.extend({
     name: 'tweet-widget',
@@ -43,6 +52,17 @@ const TweetWidgetExtension = (injector: Injector): Node => {
         },
       };
     },
+    addStorage() {
+      return {
+          markdown: {
+              parse: {
+                  setup(markdownit) {
+                          markdownit.use(markdownitTweet);
+                  },
+              }
+          }
+      }
+  },
   });
 };
 
