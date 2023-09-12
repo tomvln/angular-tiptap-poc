@@ -27,7 +27,7 @@ import { parseMdToJson } from './markdown/parse-md-to-json';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent implements OnInit, OnDestroy {
   name = 'Angular';
 
   //content = content; // can be HTML or JSON, see https://www.tiptap.dev/api/editor#content
