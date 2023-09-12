@@ -21,7 +21,6 @@ export const markdownitWidget = (md, options) => {
       nextLine++;
       if (breakCondition) break;
     }
-    console.log('nextLine ok', nextLine);
 
     const content = state.src.slice(pos, state.eMarks[nextLine - 1]);
 

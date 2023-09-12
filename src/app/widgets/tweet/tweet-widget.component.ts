@@ -16,7 +16,6 @@ export class TweetWidgetComponent
   align: 'left' | 'center' | 'right';
 
   ngOnInit() {
-    console.log('init')
     this.id = this.node.attrs.id.toString();
     this.align = this.node.attrs.align;
   }
