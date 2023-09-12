@@ -20,7 +20,7 @@ import prettifyHTML from 'prettify-html';
 import Dropcursor from '@tiptap/extension-dropcursor';
 import Focus from '@tiptap/extension-focus';
 import Placeholder from '@tiptap/extension-placeholder';
-import Markdown from 'tiptap-markdown'
+import { Markdown } from 'tiptap-markdown';
 //import { parseMdToJson } from './markdown/parse-md-to-json';
 
 @Component({
@@ -76,8 +76,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     //this.content = parseMdToJson(content);
-
-      //const json = defaultMarkdownParser.parse(content)
+    //const json = defaultMarkdownParser.parse(content)
   }
 
   ngOnDestroy(): void {
