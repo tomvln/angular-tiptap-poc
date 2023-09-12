@@ -20,8 +20,7 @@ import prettifyHTML from 'prettify-html';
 import Dropcursor from '@tiptap/extension-dropcursor';
 import Focus from '@tiptap/extension-focus';
 import Placeholder from '@tiptap/extension-placeholder';
-import { defaultMarkdownParser } from 'prosemirror-markdown';
-import { EditorState } from '@tiptap/pm';
+import { parseMdToJson } from './markdown/parse-md-to-json';
 
 @Component({
   selector: 'app-root',
@@ -31,7 +30,8 @@ import { EditorState } from '@tiptap/pm';
 export class AppComponent implements OnDestroy {
   name = 'Angular';
 
-  content = defaultMarkdownParser.parse(content); // can be HTML or JSON, see https://www.tiptap.dev/api/editor#content
+  //content = content; // can be HTML or JSON, see https://www.tiptap.dev/api/editor#content
+  content
 
   editor = new Editor({
     extensions: [
@@ -72,12 +72,8 @@ export class AppComponent implements OnDestroy {
 
   constructor(private injector: Injector) {}
 
-  ngOnInit() {
-    const state = EditorState.create({
-      doc: defaultMarkdownParser.parse(content),
-    });
-
-    console.log('state', state);
+  async ngOnInit() {
+    this.content = await parseMdToJson(content)
   }
 
   ngOnDestroy(): void {
