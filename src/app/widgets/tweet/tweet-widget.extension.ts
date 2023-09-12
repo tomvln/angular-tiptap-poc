@@ -12,13 +12,48 @@ declare module '@tiptap/core' {
   }
 }
 
-const markdownitTweetParser = (state, silent) => {
+  function parseParams(str) {
+    const params = {};
+    str.replace(/(\w+)="([^"]*)"/g, function(match, key, value) {
+      params[key] = value;
+    });
+    return params;
+  }
 
-  return false
-}
+  function markdownitTweetParser(state, startLine, endLine, silent) {
+    const pos = state.bMarks[startLine] + state.tShift[startLine];
+    const max = state.eMarks[startLine];
+
+    // Check if the line starts with "{{widget"
+    if (pos + 8 > max || state.src.slice(pos, pos + 8) !== '{{widget') return false;
+
+    // Find the end of the block
+    let nextLine = startLine;
+    while (nextLine < endLine) {
+      if (state.sCount[nextLine] < state.blkIndent) break;
+      nextLine++;
+    }
+
+    const content = state.src.slice(pos, state.eMarks[nextLine - 1]);
+
+    const params = parseParams(content.slice(8, -2).trim());
+
+    // silent mode is for probing, and we should not output anything
+    if (!silent) {
+      // create token
+      const token = state.push('tweet', '', 0);
+      token.info = params;
+      token.map = [startLine, nextLine];
+      token.markup = content;
+    }
+
+    state.line = nextLine;
+
+    return true;
+  }
 
 const markdownitTweet = (md) => {
-  md.inline.ruler.after('emphasis', 'tweet', markdownitTweetParser);
+  md.block.ruler.after('emphasis', 'tweet', markdownitTweetParser);
 };
 
 const TweetWidgetExtension = (injector: Injector): Node => {
