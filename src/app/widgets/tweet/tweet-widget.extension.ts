@@ -2,6 +2,7 @@ import { Injector } from '@angular/core';
 import { Node } from '@tiptap/core';
 import { AngularNodeViewRenderer } from 'ngx-tiptap';
 import BaseWidgetExtension from '../base/base-widget.extension';
+import { markdownitWidget } from '../base/markdownit-widget.plugin';
 import { TweetWidgetComponent } from './tweet-widget.component';
 
 declare module '@tiptap/core' {
@@ -11,54 +12,6 @@ declare module '@tiptap/core' {
     };
   }
 }
-
-function markdownitTweetParser(state, startLine, endLine, silent) {
-  const pos = state.bMarks[startLine] + state.tShift[startLine];
-  const max = state.eMarks[startLine];
-
-  // Check if the line starts with "{{tweet"
-  if (pos + 7 > max || state.src.slice(pos, pos + 7) !== '{{tweet')
-    return false;
-
-  // Find the end of the block
-  let nextLine = startLine;
-  while (nextLine < endLine) {
-    console.log('nextLine', nextLine);
-    const endNextLine = state.eMarks[nextLine];
-    console.log('end line', state.src.slice(endNextLine - 2, endNextLine));
-    console.log('end line === }}', state.src.slice(endNextLine - 2, endNextLine) === '}}');
-    console.log('condition', state.sCount[nextLine] < state.blkIndent)
-    if (state.sCount[nextLine] < state.blkIndent) break;
-    nextLine++;
-  }
-  console.log('nextLine ok', nextLine);
-
-  const content = state.src.slice(pos, state.eMarks[nextLine - 1]);
-
-  const params = content.slice(7, -2).trim();
-
-  // silent mode is for probing, and we should not output anything
-  if (!silent) {
-    // create token
-    const token = state.push('tweet', '', 0);
-    token.info = params;
-    token.map = [startLine, nextLine];
-    token.markup = content;
-  }
-
-  state.line = nextLine;
-
-  return true;
-}
-
-const markdownitTweet = (md) => {
-  md.block.ruler.after('fence', 'tweet', markdownitTweetParser);
-
-  md.renderer.rules.tweet = function (tokens, idx) {
-    const token = tokens[idx];
-    return `<app-tweet-widget ${token.info}></app-tweet-widget>`;
-  };
-};
 
 const TweetWidgetExtension = (injector: Injector): Node => {
   return BaseWidgetExtension.extend({
@@ -96,7 +49,10 @@ const TweetWidgetExtension = (injector: Injector): Node => {
         markdown: {
           parse: {
             setup(markdownit) {
-              markdownit.use(markdownitTweet);
+              markdownit.use(markdownitWidget, {
+                name: 'tweet',
+                withHash: false,
+              });
             },
           },
         },
