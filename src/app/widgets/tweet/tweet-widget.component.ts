@@ -17,7 +17,7 @@ export class TweetWidgetComponent
 
   ngOnInit() {
     console.log('init')
-    this.id = this.node.attrs.id;
+    this.id = this.node.attrs.id.toString();
     this.align = this.node.attrs.align;
   }
 }

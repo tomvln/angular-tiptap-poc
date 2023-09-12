@@ -30,7 +30,6 @@ function markdownitTweetParser(state, startLine, endLine, silent) {
   const content = state.src.slice(pos, state.eMarks[nextLine - 1]);
 
   const params = content.slice(7, -2).trim();
-  console.log(params);
 
   // silent mode is for probing, and we should not output anything
   if (!silent) {
