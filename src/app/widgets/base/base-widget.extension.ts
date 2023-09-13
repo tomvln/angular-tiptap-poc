@@ -35,6 +35,7 @@ const filterActions = (actions, keys: string[]) =>
     }, {});
 
 export const getBaseActions = (actionNames: string[] = []) => {
+  console.log('getBaseActions');
   const filteredCommands = actionNames
     ? filterActions(BASE_COMMANDS, actionNames)
     : BASE_COMMANDS;
@@ -45,7 +46,6 @@ export const getBaseActions = (actionNames: string[] = []) => {
 
   return [filteredCommands, filteredAttributes];
 };
-
 
 export const BaseWidgetExtension = Node.create({
   group: 'block',
