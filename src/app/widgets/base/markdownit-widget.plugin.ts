@@ -6,26 +6,35 @@ export const markdownitWidget = (md, options) => {
 
     const startPos = state.pos;
     const maxPos = state.posMax;
-    const start = state.src.indexOf(openingTag, startPos);
+    const widgetStartPos = state.src.indexOf(openingTag, startPos);
 
     // If no opening tag found in the remaining input, stop
-    if (start < 0 || start + openingTag.length >= maxPos) return false;
+    if (widgetStartPos < 0 || widgetStartPos + openingTag.length >= maxPos)
+      return false;
 
-    const endParams = state.src.indexOf(
+    const endParamsPos = state.src.indexOf(
       closingParamsTag,
-      start + openingTag.length
+      widgetStartPos + openingTag.length
     );
-    const endContent = options.withhash
-      ? state.src.indexOf(closingParamsTag, start + openingTag.length)
-      : endParams;
 
-    // If no closing tag found after the opening tag, stop
-    if (endParams < 0) return false;
+    // If no closing params tag found after the opening tag, stop
+    if (endParamsPos < 0) return false;
 
-    const params = state.src.slice(start + openingTag.length, endParams).trim();
+    const endClosingParamsTagPos = endParamsPos + closingParamsTag.length;
+
+    const endContentPos = options.withHash
+      ? state.src.indexOf(closingContentTag, widgetStartPos + openingTag.length)
+      : endClosingParamsTagPos;
+
+    const endClosingContentTagPos = endContentPos + closingContentTag.length;
+
+    const params = state.src
+      .slice(widgetStartPos + openingTag.length, endParamsPos)
+      .trim();
     const content = options.withHash
-      ? state.src.slice(endParams + closingParamsTag.length, endContent)
+      ? state.src.slice(endClosingParamsTagPos, endContentPos)
       : '';
+    console.log('content', content);
 
     // silent mode is for probing, and we should not output anything
     if (!silent) {
@@ -33,15 +42,12 @@ export const markdownitWidget = (md, options) => {
       const token = state.push(options.name, '', 0);
       token.info = params;
       token.content = content;
-      token.markup = state.src.slice(
-        start,
-        endParams + closingParamsTag.length
-      );
+      token.markup = state.src.slice(widgetStartPos, endClosingParamsTagPos);
     }
 
     state.pos = options.withHash
-      ? endContent + closingContentTag.length
-      : endContent + closingParamsTag.length;
+      ? endClosingContentTagPos
+      : endClosingParamsTagPos;
 
     return true;
   };
@@ -50,6 +56,7 @@ export const markdownitWidget = (md, options) => {
 
   md.renderer.rules[options.name] = function (tokens, idx) {
     const token = tokens[idx];
-    return `<app-${options.name}-widget ${token.info}></app-${options.name}-widget>`;
+    console.log('token', token);
+    return `<app-${options.name}-widget ${token.info}>${token.content}</app-${options.name}-widget>`;
   };
 };
