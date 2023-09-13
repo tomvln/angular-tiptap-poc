@@ -44,14 +44,11 @@ const filterObject = (object, keys: string[]) =>
       });
     }, {});
 
-export const getBaseCommandsAndAttributes = (actionNames?: string[]) => {
-  let filteredCommands = baseCommands;
-  let filteredAttributes = baseAttributes;
-
-  if (actionNames) {
-    filteredCommands = filterObject(baseCommands, actionNames);
-    filteredAttributes = filterObject(baseAttributes, actionNames);
-  }
+export const getBaseCommandsAndAttributes = (actionNames: string[] = []) => {
+  const filteredCommands = filterObject(baseCommands, actionNames);
+  console.log('filteredCommands', filteredCommands);
+  const filteredAttributes = filterObject(baseAttributes, actionNames);
+  console.log('filteredAttributes', filteredAttributes);
 
   return [filteredCommands, filteredAttributes];
 };
