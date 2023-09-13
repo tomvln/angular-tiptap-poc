@@ -1,46 +1,52 @@
 export const markdownitWidget = (md, options) => {
-  const markdownitWidgetParser = (state, startLine, endLine, silent) => {
-    const pos = state.bMarks[startLine] + state.tShift[startLine];
-    const max = state.eMarks[startLine];
-
+  const markdownitWidgetParser = (state, silent) => {
     const openingTag = `{{${options.withHash ? '#' : ''}${options.name}`;
+    const closingParamsTag = `}}`;
+    const closingContentTag = `{{/${options.name}}}`;
 
-    // Check if the line starts with a widget opening tag
-    if (
-      pos + openingTag.length > max ||
-      state.src.slice(pos, pos + openingTag.length) !== openingTag
-    )
-      return false;
+    const startPos = state.pos;
+    const maxPos = state.posMax;
+    const start = state.src.indexOf(openingTag, startPos);
 
-    // Find the end of the block
-    let nextLine = startLine;
-    while (nextLine < endLine) {
-      const endNextLine = state.eMarks[nextLine];
-      const breakCondition =
-        state.src.slice(endNextLine - 2, endNextLine) === '}}';
-      nextLine++;
-      if (breakCondition) break;
-    }
+    // If no opening tag found in the remaining input, stop
+    if (start < 0 || start + openingTag.length >= maxPos) return false;
 
-    const content = state.src.slice(pos, state.eMarks[nextLine - 1]);
+    const endParams = state.src.indexOf(
+      closingParamsTag,
+      start + openingTag.length
+    );
+    const endContent = options.withhash
+      ? state.src.indexOf(closingParamsTag, start + openingTag.length)
+      : endParams;
 
-    const params = content.slice(openingTag.length, -2).trim();
+    // If no closing tag found after the opening tag, stop
+    if (endParams < 0) return false;
+
+    const params = state.src.slice(start + openingTag.length, endParams).trim();
+    const content = options.withHash
+      ? state.src.slice(endParams + closingParamsTag.length, endContent)
+      : '';
 
     // silent mode is for probing, and we should not output anything
     if (!silent) {
       // create token
       const token = state.push(options.name, '', 0);
       token.info = params;
-      token.map = [startLine, nextLine];
-      token.markup = content;
+      token.content = content;
+      token.markup = state.src.slice(
+        start,
+        endParams + closingParamsTag.length
+      );
     }
 
-    state.line = nextLine;
+    state.pos = options.withHash
+      ? endContent + closingContentTag.length
+      : endContent + closingParamsTag.length;
 
     return true;
   };
 
-  md.block.ruler.after('fence', options.name, markdownitWidgetParser);
+  md.inline.ruler.after('text', options.name, markdownitWidgetParser);
 
   md.renderer.rules[options.name] = function (tokens, idx) {
     const token = tokens[idx];

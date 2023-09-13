@@ -19,8 +19,6 @@ The battle for equality is one of the deeply rooted national debates explored wi
 
 “The recorded deaths of Black people at the hands of white people that we have seen these last two years are nothing new in this country. Such recordings continue to serve as spectacles for consumption in the court of public opinion while the conditions under which Black people suffer remain unchanged.”
 
-{{tweet id="20" ratio="auto" align="center" size="fullwidth" caption="caption example" }}
-
 ## 'Anti-Black oppression'
 
 The ‘America in Crisis’ exhibition features a body of Murff’s work, described as considering how generations of injustice and racist civic policies have shaped infrastructure and daily life in the historically Black neighbourhood of North Omaha in Nebraska.
@@ -60,4 +58,6 @@ Murff doesn’t have one key takeaway for those viewing his work in London. Rath
 “There are people who will come to it, who will understand it, and can use it as a way of just feeling acknowledged and commiserating with me.”
 
 **_‘America in Crisis,’_ organised by the Saatchi Gallery, runs from 21 January to 3 April 2022. The exhibition is curated by: Sophie Wright, Gregory Harris from Atlanta’s High Museum of Art, and academic Tara Pixley.**
+
+{{tweet id="20" ratio="auto" align="center" size="fullwidth" caption="caption example" }}
 `;
