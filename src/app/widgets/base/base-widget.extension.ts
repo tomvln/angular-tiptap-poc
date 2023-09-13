@@ -38,7 +38,7 @@ const filterObject = (object, keys: string[]) =>
     .filter((key: string) =>
       keys.includes(key.toLowerCase().replace(/^set/, ''))
     )
-    .reduce((obj: Record<string, any>, key: string) => {
+    .reduce((obj, key: string) => {
       return Object.assign(obj, {
         [key]: object[key],
       });
