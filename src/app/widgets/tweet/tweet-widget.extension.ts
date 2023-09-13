@@ -51,7 +51,7 @@ const TweetWidgetExtension = (injector: Injector): Node => {
             setup(markdownit) {
               markdownit.use(markdownitWidget, {
                 name: 'tweet',
-                withHash: true,
+                withHash: false,
               });
             },
           },

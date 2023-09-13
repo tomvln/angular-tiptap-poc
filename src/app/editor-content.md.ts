@@ -9,7 +9,7 @@ Zora J Murff’s thought-provoking photographic work, which tackles Black repres
 
 Murff, 34, is one of 40 leading US photographers exhibiting at Saatchi, as part of its new ‘America in Crisis’ exhibition.
 
-{{#tweet id="20" ratio="auto" align="center" size="fullwidth" caption="caption example" }}test content{{/tweet}}
+{{tweet id="20" ratio="auto" align="center" size="fullwidth" caption="caption example" }}
 
 The show is born out of a 1960s photography concept of the same name, which explored the American Dream versus reality at a time of great change and division: the run-up to the election of Richard Nixon as president.
 
@@ -61,5 +61,5 @@ Murff doesn’t have one key takeaway for those viewing his work in London. Rath
 
 **_‘America in Crisis,’_ organised by the Saatchi Gallery, runs from 21 January to 3 April 2022. The exhibition is curated by: Sophie Wright, Gregory Harris from Atlanta’s High Museum of Art, and academic Tara Pixley.**
 
-{{#tweet id="20" ratio="auto" align="center" size="fullwidth" caption="caption example" }}test content{{/tweet}}
+{{tweet id="20" ratio="auto" align="center" size="fullwidth" caption="caption example" }}
 `;
