@@ -27,6 +27,7 @@ const TweetWidgetExtension = (injector: Injector): Node => {
       return AngularNodeViewRenderer(TweetWidgetComponent, { injector });
     },
     addCommands() {
+      console.log('parent commands', this.parent?.());
       return {
         setTweet:
           (attributes) =>
@@ -36,6 +37,7 @@ const TweetWidgetExtension = (injector: Injector): Node => {
       };
     },
     addAttributes() {
+      console.log('parent attributes', this.parent?.());
       return {
         ...this.parent?.(),
         id: {
