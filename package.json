@@ -40,6 +40,7 @@
     "@tiptap/extension-text": "2.1.8",
     "@tiptap/pm": "2.1.8",
     "@tiptap/pm/markdown": "*",
+    "@types/markdown-it": "^13.0.1",
     "events": "3.3.0",
     "ngx-tiptap": "8.0.0",
     "ngx-twitter-widgets": "1.0.3",
