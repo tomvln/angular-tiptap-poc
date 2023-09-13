@@ -1,12 +1,8 @@
-import MarkdownIt from 'markdown-it';
-import StateInline from 'markdown-it/lib/rules_inline/state_inline';
-import Token from 'markdown-it/lib/token';
-
 export const markdownitWidget = (
-  md: MarkdownIt,
+  md,
   options: { name: string; withHash?: boolean }
 ) => {
-  const markdownitWidgetParser = (state: StateInline, silent: boolean) => {
+  const markdownitWidgetParser = (state, silent: boolean) => {
     const openingTag = `{{${options.withHash ? '#' : ''}${options.name}`;
     const closingParamsTag = `}}`;
     const closingContentTag = `{{/${options.name}}}`;
@@ -41,12 +37,11 @@ export const markdownitWidget = (
     const content = options.withHash
       ? state.src.slice(endClosingParamsTagPos, endContentPos)
       : '';
-    console.log('content', content);
 
     // silent mode is for probing, and we should not output anything
     if (!silent) {
       // create token
-      const token: Token = state.push(options.name, '', 0);
+      const token = state.push(options.name, '', 0);
       token.meta.params = params;
       token.meta.content = content;
     }
@@ -62,7 +57,6 @@ export const markdownitWidget = (
 
   md.renderer.rules[options.name] = function (tokens, idx) {
     const token = tokens[idx];
-    console.log('token', token);
     return `<app-${options.name}-widget ${token.meta.params}>${token.meta.content}</app-${options.name}-widget>`;
   };
 };
