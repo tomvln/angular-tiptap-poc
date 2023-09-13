@@ -1,4 +1,4 @@
-export const markdownitWidget = (
+export const markdownitWidgetPlugin = (
   md,
   options: { name: string; withHash?: boolean }
 ) => {

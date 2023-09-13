@@ -76,6 +76,7 @@
 >
   <div class="bubble-menu">
     <button
+      *ngIf="selectedWidgetHasAction('align')"
       (click)="editor.chain().focus().setAlign('left').run()"
       [ngClass]="{ active: editor.isActive({ align: 'left' }) }"
     >
@@ -83,6 +84,7 @@
     </button>
 
     <button
+      *ngIf="selectedWidgetHasAction('align')"
       (click)="editor.chain().focus().setAlign('center').run()"
       [ngClass]="{ active: editor.isActive({ align: 'center' }) }"
     >
@@ -90,6 +92,7 @@
     </button>
 
     <button
+      *ngIf="selectedWidgetHasAction('align')"
       (click)="editor.chain().focus().setAlign('right').run()"
       [ngClass]="{ active: editor.isActive({ align: 'right' }) }"
     >

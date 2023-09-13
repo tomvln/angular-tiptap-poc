@@ -1,11 +1,6 @@
 import { Injector } from '@angular/core';
 import { Node } from '@tiptap/core';
-import { AngularNodeViewRenderer } from 'ngx-tiptap';
-import {
-  BaseWidgetExtension,
-  getBaseActions,
-} from '../base/base-widget.extension';
-import { markdownitWidget } from '../base/markdownit-widget.plugin';
+import { createWidgetExtension } from '../base/base-widget.extension';
 import { TweetWidgetComponent } from './tweet-widget.component';
 
 declare module '@tiptap/core' {
@@ -16,53 +11,25 @@ declare module '@tiptap/core' {
   }
 }
 
-const [baseCommands, baseAttributes] = getBaseActions(['align']);
+const name = 'tweet';
 
-const TweetWidgetExtension = (injector: Injector): Node => {
-  return BaseWidgetExtension.extend({
-    name: 'tweet-widget',
-    parseHTML() {
-      return [{ tag: 'app-tweet-widget' }];
-    },
-    renderHTML({ HTMLAttributes }) {
-      return ['app-tweet-widget', HTMLAttributes, 0];
-    },
-    addNodeView() {
-      return AngularNodeViewRenderer(TweetWidgetComponent, { injector });
-    },
-    addCommands() {
-      return {
-        ...baseCommands,
-        setTweet:
-          (attributes) =>
-          ({ commands }) => {
-            return commands.setNode(this.name, attributes);
-          },
-      };
-    },
-    addAttributes() {
-      return {
-        ...baseAttributes,
-        id: {
-          default: null,
+const TweetWidgetExtension = (injector: Injector): Node =>
+  createWidgetExtension(injector, {
+    name,
+    component: TweetWidgetComponent,
+    commands: {
+      setTweet:
+        (attributes) =>
+        ({ commands }) => {
+          return commands.setNode(name, attributes);
         },
-      };
     },
-    addStorage() {
-      return {
-        markdown: {
-          parse: {
-            setup(markdownit) {
-              markdownit.use(markdownitWidget, {
-                name: 'tweet',
-                withHash: false,
-              });
-            },
-          },
-        },
-      };
+    attributes: {
+      id: {
+        default: null,
+      },
     },
+    baseActions: ['align'],
   });
-};
 
 export default TweetWidgetExtension;

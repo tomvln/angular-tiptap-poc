@@ -64,16 +64,15 @@ export class AppComponent implements OnInit, OnDestroy {
       // Widgets
       TweetWidget(this.injector),
     ],
-    onSelectionUpdate({ editor }) {
-      const { state } = editor;
+    onSelectionUpdate: ({ editor }) => {
+      const { state, storage } = editor;
       const { selection } = state;
-
-      if (!selection.empty) {
-        const node = state.doc.nodeAt(selection.from);
-        console.log('node', node);
-      }
+      const nodeName = state.doc.nodeAt(selection.from)?.type?.name;
+      this.selectedWidgetActions = storage[nodeName]?.actions || [];
     },
   });
+
+  selectedWidgetActions: string[] = [];
 
   constructor(private injector: Injector) {}
 
@@ -126,5 +125,9 @@ export class AppComponent implements OnInit, OnDestroy {
         .content()
         .content.content[0].type.name.includes('widget')
     );
+  }
+
+  selectedWidgetHasAction(name: string) {
+    return this.selectedWidgetActions.includes(name);
   }
 }
