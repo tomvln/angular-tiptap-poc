@@ -20,7 +20,6 @@ import Dropcursor from '@tiptap/extension-dropcursor';
 import Focus from '@tiptap/extension-focus';
 import Placeholder from '@tiptap/extension-placeholder';
 import { Markdown } from 'tiptap-markdown';
-//import { parseMdToJson } from './markdown/parse-md-to-json';
 
 @Component({
   selector: 'app-root',

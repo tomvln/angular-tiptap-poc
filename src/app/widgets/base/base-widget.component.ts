@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularNodeViewComponent } from 'ngx-tiptap';
 
 @Component({ template: '' })

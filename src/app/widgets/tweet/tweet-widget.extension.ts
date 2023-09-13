@@ -1,10 +1,8 @@
 import { Injector } from '@angular/core';
 import { Node } from '@tiptap/core';
 import { AngularNodeViewRenderer } from 'ngx-tiptap';
-import {
-  BaseWidgetExtension,
-  getBaseCommandsAndAttributes,
-} from '../base/base-widget.extension';
+import { getBaseActions } from '../base/base-actions';
+import BaseWidgetExtension from '../base/base-widget.extension';
 import { markdownitWidget } from '../base/markdownit-widget.plugin';
 import { TweetWidgetComponent } from './tweet-widget.component';
 
@@ -16,7 +14,7 @@ declare module '@tiptap/core' {
   }
 }
 
-const [baseCommands, baseAttributes] = getBaseCommandsAndAttributes(['align']);
+const [baseCommands, baseAttributes] = getBaseActions(['align']);
 
 const TweetWidgetExtension = (injector: Injector): Node => {
   return BaseWidgetExtension.extend({
