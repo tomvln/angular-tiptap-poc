@@ -10,29 +10,48 @@ declare module '@tiptap/core' {
   }
 }
 
-const BaseWidgetExtension = Node.create({
+export const BaseWidgetExtension = Node.create({
   group: 'block',
   content: 'block*',
   draggable: true,
   selectable: true,
   atom: true,
-  addCommands() {
-    return {
-      setAlign:
-        (align) =>
-        ({ commands, tr }) => {
-          tr.curSelection.node.attrs.align = align;
-          return commands.focus();
-        },
-    };
-  },
-  addAttributes() {
-    return {
-      align: {
-        default: 'center',
-      },
-    };
-  },
 });
 
-export default BaseWidgetExtension;
+const baseCommands = {
+  setAlign:
+    (align) =>
+    ({ commands, tr }) => {
+      tr.curSelection.node.attrs.align = align;
+      return commands.focus();
+    },
+};
+
+const baseAttributes = {
+  align: {
+    default: 'center',
+  },
+};
+
+const filterObject = (object, keys: string[]) =>
+  Object.keys(object)
+    .filter((key: string) =>
+      keys.includes(key.toLowerCase().replace(/^set/, ''))
+    )
+    .reduce((obj: Record<string, any>, key: string) => {
+      return Object.assign(obj, {
+        [key]: object[key],
+      });
+    }, {});
+
+export const getBaseCommandsAndAttributes = (actionNames?: string[]) => {
+  let filteredCommands = baseCommands;
+  let filteredAttributes = baseAttributes;
+
+  if (actionNames) {
+    filteredCommands = filterObject(baseCommands, actionNames);
+    filteredAttributes = filterObject(baseAttributes, actionNames);
+  }
+
+  return [filteredCommands, filteredAttributes];
+};

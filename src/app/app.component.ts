@@ -1,6 +1,5 @@
 // import * as content from './editor-content.json';
 import { content } from './editor-content.md';
-import BaseWidget from './widgets/base/base-widget.extension';
 import TweetWidget from './widgets/tweet/tweet-widget.extension';
 import { Component, Injector, OnDestroy, OnInit } from '@angular/core';
 import { Editor } from '@tiptap/core';
@@ -73,7 +72,6 @@ export class AppComponent implements OnInit, OnDestroy {
       if (!selection.empty) {
         const node = state.doc.nodeAt(selection.from);
         console.log('node', node);
-
       }
     },
   });
