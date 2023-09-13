@@ -12,8 +12,9 @@ export const markdownitWidget = (
     const widgetStartPos = state.src.indexOf(openingTag, startPos);
 
     // If no opening tag found in the remaining input, stop
-    if (widgetStartPos < 0 || widgetStartPos + openingTag.length >= maxPos)
+    if (widgetStartPos < 0 || widgetStartPos + openingTag.length >= maxPos) {
       return false;
+    }
 
     const endParamsPos = state.src.indexOf(
       closingParamsTag,
@@ -21,7 +22,9 @@ export const markdownitWidget = (
     );
 
     // If no closing params tag found after the opening tag, stop
-    if (endParamsPos < 0) return false;
+    if (endParamsPos < 0) {
+      return false;
+    }
 
     const endClosingParamsTagPos = endParamsPos + closingParamsTag.length;
 
@@ -34,6 +37,7 @@ export const markdownitWidget = (
     const params = state.src
       .slice(widgetStartPos + openingTag.length, endParamsPos)
       .trim();
+
     const content = options.withHash
       ? state.src.slice(endClosingParamsTagPos, endContentPos)
       : '';
@@ -42,8 +46,7 @@ export const markdownitWidget = (
     if (!silent) {
       // create token
       const token = state.push(options.name, '', 0);
-      token.meta.params = params;
-      token.meta.content = content;
+      token.meta = { params, content };
     }
 
     state.pos = options.withHash

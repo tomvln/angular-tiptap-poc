@@ -5,7 +5,7 @@ import { WidgetInterface } from '../widget.interface';
 @Component({
   selector: 'app-tweet-widget',
   templateUrl: 'tweet-widget.component.html',
-  styleUrls: ['tweet-widget.component.css']
+  styleUrls: ['tweet-widget.component.css'],
 })
 export class TweetWidgetComponent
   extends AngularNodeViewComponent

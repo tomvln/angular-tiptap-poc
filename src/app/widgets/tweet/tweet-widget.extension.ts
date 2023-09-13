@@ -20,7 +20,7 @@ const TweetWidgetExtension = (injector: Injector): Node => {
       return [{ tag: 'app-tweet-widget' }];
     },
     renderHTML({ HTMLAttributes }) {
-      return ['app-tweet-widget', HTMLAttributes];
+      return ['app-tweet-widget', HTMLAttributes, 0];
     },
     addNodeView() {
       return AngularNodeViewRenderer(TweetWidgetComponent, { injector });
