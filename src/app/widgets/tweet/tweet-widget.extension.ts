@@ -1,8 +1,10 @@
 import { Injector } from '@angular/core';
 import { Node } from '@tiptap/core';
 import { AngularNodeViewRenderer } from 'ngx-tiptap';
-import { getBaseActions } from '../base/base-actions';
-import BaseWidgetExtension from '../base/base-widget.extension';
+import {
+  BaseWidgetExtension,
+  getBaseActions,
+} from '../base/base-widget.extension';
 import { markdownitWidget } from '../base/markdownit-widget.plugin';
 import { TweetWidgetComponent } from './tweet-widget.component';
 
