@@ -12,7 +12,7 @@ declare module '@tiptap/core' {
 
 const BaseWidgetExtension = Node.create({
   group: 'block',
-  content: 'inline*',
+  content: 'block*',
   draggable: true,
   selectable: true,
   atom: true,
@@ -21,9 +21,16 @@ const BaseWidgetExtension = Node.create({
       setAlign:
         (align) =>
         ({ commands, tr }) => {
-          tr.curSelection.node.attrs.align = align
-          return commands.focus()
+          tr.curSelection.node.attrs.align = align;
+          return commands.focus();
         },
+    };
+  },
+  addAttributes() {
+    return {
+      align: {
+        default: 'center',
+      },
     };
   },
 });

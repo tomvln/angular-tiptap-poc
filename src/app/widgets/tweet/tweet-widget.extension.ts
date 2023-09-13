@@ -16,6 +16,7 @@ declare module '@tiptap/core' {
 const TweetWidgetExtension = (injector: Injector): Node => {
   return BaseWidgetExtension.extend({
     name: 'tweet-widget',
+    test: 'test',
     parseHTML() {
       return [{ tag: 'app-tweet-widget' }];
     },
@@ -36,9 +37,7 @@ const TweetWidgetExtension = (injector: Injector): Node => {
     },
     addAttributes() {
       return {
-        align: {
-          default: 'center',
-        },
+        ...this.parent?.(),
         id: {
           default: null,
         },

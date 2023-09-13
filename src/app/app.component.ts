@@ -29,10 +29,7 @@ import { Markdown } from 'tiptap-markdown';
   styleUrls: ['app.component.css'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  name = 'Angular';
-
-  content = content; // can be HTML or JSON, see https://www.tiptap.dev/api/editor#content
-  //content;
+  content = content;
 
   editor = new Editor({
     extensions: [
@@ -67,17 +64,23 @@ export class AppComponent implements OnInit, OnDestroy {
       }),
       Markdown,
       // Widgets
-      BaseWidget,
       TweetWidget(this.injector),
     ],
+    onSelectionUpdate({ editor }) {
+      const { state } = editor;
+      const { selection } = state;
+
+      if (!selection.empty) {
+        const node = state.doc.nodeAt(selection.from);
+        console.log('node', node);
+
+      }
+    },
   });
 
   constructor(private injector: Injector) {}
 
-  ngOnInit() {
-    //this.content = parseMdToJson(content);
-    //const json = defaultMarkdownParser.parse(content)
-  }
+  ngOnInit() {}
 
   ngOnDestroy(): void {
     this.editor.destroy();

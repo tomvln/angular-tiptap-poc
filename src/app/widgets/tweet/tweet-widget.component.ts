@@ -1,5 +1,5 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { AngularNodeViewComponent } from 'ngx-tiptap';
+import { BaseWidgetComponent } from '../base/base-widget.component';
 import { WidgetInterface } from '../widget.interface';
 
 @Component({
@@ -8,15 +8,17 @@ import { WidgetInterface } from '../widget.interface';
   styleUrls: ['tweet-widget.component.css'],
 })
 export class TweetWidgetComponent
-  extends AngularNodeViewComponent
+  extends BaseWidgetComponent
   implements WidgetInterface, OnInit
 {
   name = 'Tweet';
   id: string;
-  align: 'left' | 'center' | 'right';
+
+  constructor() {
+    super();
+  }
 
   ngOnInit() {
     this.id = this.node.attrs.id.toString();
-    this.align = this.node.attrs.align;
   }
 }
