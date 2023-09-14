@@ -1,6 +1,6 @@
 import { Node } from '@tiptap/core';
 import { AngularNodeViewRenderer } from 'ngx-tiptap';
-import { markdownitWidgetPlugin } from './markdownit-widget.plugin';
+import { markdownitWidgetPlugin } from './markdownit-widget-plugin';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {

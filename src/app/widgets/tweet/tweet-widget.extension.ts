@@ -1,6 +1,6 @@
 import { Injector } from '@angular/core';
 import { Node } from '@tiptap/core';
-import { createWidgetExtension } from '../base/base-widget.extension';
+import { WidgetExtensionFactory } from '../base/widget-extension-factory';
 import { TweetWidgetComponent } from './tweet-widget.component';
 
 declare module '@tiptap/core' {
@@ -14,7 +14,7 @@ declare module '@tiptap/core' {
 const name = 'tweet';
 
 const TweetWidgetExtension = (injector: Injector): Node =>
-  createWidgetExtension(injector, {
+  WidgetExtensionFactory.create(injector, {
     name,
     component: TweetWidgetComponent,
     commands: {
