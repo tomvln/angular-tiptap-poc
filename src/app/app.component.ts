@@ -1,5 +1,5 @@
-// import * as content from './editor-content.json';
-import { content } from './editor-content.md';
+// import * as content from './editor-content/editor-content.json';
+import { content } from './editor-content/editor-content.md';
 import TweetWidget from './widgets/tweet/tweet-widget.extension';
 import { Component, Injector, OnDestroy } from '@angular/core';
 import { Editor } from '@tiptap/core';
@@ -20,7 +20,7 @@ import Dropcursor from '@tiptap/extension-dropcursor';
 import Focus from '@tiptap/extension-focus';
 import Placeholder from '@tiptap/extension-placeholder';
 import { Markdown } from 'tiptap-markdown';
-import { WidgetAlign } from './widgets/base/widget-actions.enum';
+import { WidgetActionAlign } from './widgets/core/widget-actions.enum';
 
 @Component({
   selector: 'app-root',
@@ -75,7 +75,7 @@ export class AppComponent implements OnDestroy {
 
   public selectedWidgetActions: string[] = [];
 
-  public widgetAlignEnum = WidgetAlign
+  public widgetAlignEnum = WidgetActionAlign;
 
   constructor(private injector: Injector) {}
 

@@ -1,6 +1,6 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
-import { BaseWidgetComponent } from '../base/base-widget.component';
-import { WidgetInterface } from '../base/widget.interface';
+import { Component, OnInit } from '@angular/core';
+import { BaseWidgetComponent } from '../core/base-widget.component';
+import { WidgetComponentInterface } from '../core/widget-component.interface';
 
 @Component({
   selector: 'app-tweet-widget',
@@ -9,7 +9,7 @@ import { WidgetInterface } from '../base/widget.interface';
 })
 export class TweetWidgetComponent
   extends BaseWidgetComponent
-  implements WidgetInterface, OnInit
+  implements WidgetComponentInterface, OnInit
 {
   name = 'Tweet';
   id: string;

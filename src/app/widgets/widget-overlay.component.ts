@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NodeViewProps } from '@tiptap/core';
-import { WidgetInterface } from './base/widget.interface';
+import { WidgetComponentInterface } from './core/widget-component.interface';
 
 @Component({
   selector: 'app-widget-overlay',
@@ -8,5 +8,5 @@ import { WidgetInterface } from './base/widget.interface';
   styleUrls: ['widget-overlay.component.css'],
 })
 export class WidgetOverlayComponent {
-  @Input('component') component: NodeViewProps & WidgetInterface;
+  @Input('component') component: NodeViewProps & WidgetComponentInterface;
 }

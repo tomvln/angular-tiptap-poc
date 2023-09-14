@@ -1,6 +1,7 @@
 import { Node } from '@tiptap/core';
 import { AngularNodeViewRenderer } from 'ngx-tiptap';
-import { markdownitWidgetPlugin } from './markdownit-widget.plugin';
+import { markdownitWidgetPlugin } from './markdownit-widget-plugin';
+import { WidgetActionAlign } from './widget-actions.enum';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
@@ -22,7 +23,7 @@ export class WidgetExtensionFactory {
 
   private static BASE_ATTRIBUTES = {
     align: {
-      default: 'center',
+      default: WidgetActionAlign.CENTER,
     },
   };
 
@@ -35,7 +36,7 @@ export class WidgetExtensionFactory {
       attributes: any;
       baseActions?: string[];
     }
-  ) => {
+  ): Node => {
     const [baseCommands, baseAttributes] =
       WidgetExtensionFactory.getBaseActions(options?.baseActions);
 
