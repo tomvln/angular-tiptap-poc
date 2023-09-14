@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularNodeViewComponent } from 'ngx-tiptap';
+import { WidgetAlign } from './widget-actions.enum';
 
 @Component({ template: '' })
 export class BaseWidgetComponent
   extends AngularNodeViewComponent
   implements OnInit
 {
-  align: 'left' | 'center' | 'right';
+  public align: WidgetAlign;
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.align = this.node.attrs.align;
   }
 }

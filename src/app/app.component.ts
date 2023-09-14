@@ -1,7 +1,7 @@
 // import * as content from './editor-content.json';
 import { content } from './editor-content.md';
 import TweetWidget from './widgets/tweet/tweet-widget.extension';
-import { Component, Injector, OnDestroy, OnInit } from '@angular/core';
+import { Component, Injector, OnDestroy } from '@angular/core';
 import { Editor } from '@tiptap/core';
 import Document from '@tiptap/extension-document';
 import Paragraph from '@tiptap/extension-paragraph';
@@ -20,16 +20,17 @@ import Dropcursor from '@tiptap/extension-dropcursor';
 import Focus from '@tiptap/extension-focus';
 import Placeholder from '@tiptap/extension-placeholder';
 import { Markdown } from 'tiptap-markdown';
+import { WidgetAlign } from './widgets/base/widget-actions.enum';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
 })
-export class AppComponent implements OnInit, OnDestroy {
-  content = content;
+export class AppComponent implements OnDestroy {
+  public content = content;
 
-  editor = new Editor({
+  public editor = new Editor({
     extensions: [
       // Nodes
       Document,
@@ -72,17 +73,17 @@ export class AppComponent implements OnInit, OnDestroy {
     },
   });
 
-  selectedWidgetActions: string[] = [];
+  public selectedWidgetActions: string[] = [];
+
+  public widgetAlignEnum = WidgetAlign
 
   constructor(private injector: Injector) {}
 
-  ngOnInit() {}
-
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.editor.destroy();
   }
 
-  setLink() {
+  public setLink(): void {
     const url = window.prompt('url :');
 
     if (url) {
@@ -92,7 +93,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  setTweet() {
+  public setTweet(): void {
     const id = window.prompt('tweet id :');
 
     if (id) {
@@ -100,15 +101,15 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  stringify(value: any) {
+  public stringify(value: any): string {
     return JSON.stringify(value, null, 2);
   }
 
-  formatHtml(html: string) {
+  public formatHtml(html: string): string {
     return prettifyHTML(html);
   }
 
-  isWidgetSelected(props) {
+  public isWidgetSelected(props): boolean {
     return (
       !props.state.selection.empty &&
       props.state.selection
@@ -117,7 +118,7 @@ export class AppComponent implements OnInit, OnDestroy {
     );
   }
 
-  isTextSelected(props) {
+  public isTextSelected(props): boolean {
     return (
       !props.state.selection.empty &&
       props.state.selection.visible &&
@@ -127,7 +128,7 @@ export class AppComponent implements OnInit, OnDestroy {
     );
   }
 
-  selectedWidgetHasAction(name: string) {
+  public selectedWidgetHasAction(name: string): boolean {
     return this.selectedWidgetActions.includes(name);
   }
 }
