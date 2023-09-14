@@ -20,7 +20,10 @@ import Dropcursor from '@tiptap/extension-dropcursor';
 import Focus from '@tiptap/extension-focus';
 import Placeholder from '@tiptap/extension-placeholder';
 import { Markdown } from 'tiptap-markdown';
-import { WidgetActionAlign } from './widgets/core/widget-actions.enum';
+import {
+  WidgetAction,
+  WidgetActionAlign,
+} from './widgets/core/widget-actions.enum';
 
 @Component({
   selector: 'app-root',
@@ -75,7 +78,8 @@ export class AppComponent implements OnDestroy {
 
   public selectedWidgetActions: string[] = [];
 
-  public widgetAlignEnum = WidgetActionAlign;
+  public widgetActionEnum = WidgetAction;
+  public widgetActionAlignEnum = WidgetActionAlign;
 
   constructor(private injector: Injector) {}
 
@@ -128,7 +132,7 @@ export class AppComponent implements OnDestroy {
     );
   }
 
-  public selectedWidgetHasAction(name: string): boolean {
-    return this.selectedWidgetActions.includes(name);
+  public selectedWidgetHasAction(action: WidgetAction): boolean {
+    return this.selectedWidgetActions.includes(action);
   }
 }

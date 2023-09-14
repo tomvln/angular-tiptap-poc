@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseWidgetComponent } from '../core/base-widget.component';
+import { AngularNodeViewComponent } from 'ngx-tiptap';
 import { WidgetComponentInterface } from '../core/widget-component.interface';
 
 @Component({
@@ -8,7 +8,7 @@ import { WidgetComponentInterface } from '../core/widget-component.interface';
   styleUrls: ['tweet-widget.component.css'],
 })
 export class TweetWidgetComponent
-  extends BaseWidgetComponent
+  extends AngularNodeViewComponent
   implements WidgetComponentInterface, OnInit
 {
   name = 'Tweet';

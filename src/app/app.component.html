@@ -75,29 +75,40 @@
   [shouldShow]="isWidgetSelected"
 >
   <div class="bubble-menu">
-    <button
-      *ngIf="selectedWidgetHasAction('align')"
-      (click)="editor.chain().focus().setAlign('left').run()"
-      [ngClass]="{ active: editor.isActive({ align: 'left' }) }"
-    >
-      <span class="material-symbols-sharp"> format_align_left </span>
-    </button>
+    <ng-container *ngIf="selectedWidgetHasAction(widgetActionEnum.ALIGN)">
+      <button
+        (click)="
+          editor.chain().focus().setAlign(widgetActionAlignEnum.LEFT).run()
+        "
+        [ngClass]="{
+          active: editor.isActive({ align: widgetActionAlignEnum.LEFT })
+        }"
+      >
+        <span class="material-symbols-sharp"> format_align_left </span>
+      </button>
 
-    <button
-      *ngIf="selectedWidgetHasAction('align')"
-      (click)="editor.chain().focus().setAlign('center').run()"
-      [ngClass]="{ active: editor.isActive({ align: 'center' }) }"
-    >
-      <span class="material-symbols-sharp"> format_align_center </span>
-    </button>
+      <button
+        (click)="
+          editor.chain().focus().setAlign(widgetActionAlignEnum.CENTER).run()
+        "
+        [ngClass]="{
+          active: editor.isActive({ align: widgetActionAlignEnum.CENTER })
+        }"
+      >
+        <span class="material-symbols-sharp"> format_align_center </span>
+      </button>
 
-    <button
-      *ngIf="selectedWidgetHasAction('align')"
-      (click)="editor.chain().focus().setAlign('right').run()"
-      [ngClass]="{ active: editor.isActive({ align: 'right' }) }"
-    >
-      <span class="material-symbols-sharp"> format_align_right </span>
-    </button>
+      <button
+        (click)="
+          editor.chain().focus().setAlign(widgetActionAlignEnum.RIGHT).run()
+        "
+        [ngClass]="{
+          active: editor.isActive({ align: widgetActionAlignEnum.RIGHT })
+        }"
+      >
+        <span class="material-symbols-sharp"> format_align_right </span>
+      </button>
+    </ng-container>
 
     <button (click)="editor.chain().focus().createParagraphNear().run()">
       <span class="material-symbols-sharp"> format_paragraph </span>

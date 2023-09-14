@@ -5,23 +5,23 @@ import { WidgetActionAlign } from './widget-actions.enum';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
-    base: {
-      setAlign: (align: string) => ReturnType;
+    widget: {
+      setAlign: (align: WidgetActionAlign) => ReturnType;
     };
   }
 }
 
 export class WidgetExtensionFactory {
-  private static BASE_COMMANDS = {
+  private static WIDGET_COMMANDS = {
     setAlign:
-      (align) =>
+      (align: WidgetActionAlign) =>
       ({ commands, tr }) => {
         tr.curSelection.node.attrs.align = align;
         return commands.focus();
       },
   };
 
-  private static BASE_ATTRIBUTES = {
+  private static WIDGET_ATTRIBUTES = {
     align: {
       default: WidgetActionAlign.CENTER,
     },
@@ -34,11 +34,11 @@ export class WidgetExtensionFactory {
       component: any;
       commands: any;
       attributes: any;
-      baseActions?: string[];
+      actions?: string[];
     }
   ): Node => {
-    const [baseCommands, baseAttributes] =
-      WidgetExtensionFactory.getBaseActions(options?.baseActions);
+    const [widgetCommands, widgetAttributes] =
+      WidgetExtensionFactory.getWidgetActions(options?.actions);
 
     return Node.create({
       name: `${options.name}-widget`,
@@ -58,19 +58,19 @@ export class WidgetExtensionFactory {
       },
       addCommands() {
         return {
-          ...baseCommands,
+          ...widgetCommands,
           ...options.commands,
         };
       },
       addAttributes() {
         return {
-          ...baseAttributes,
+          ...widgetAttributes,
           ...options.attributes,
         };
       },
       addStorage() {
         return {
-          actions: options?.baseActions,
+          actions: options?.actions,
           markdown: {
             parse: {
               setup(markdownit) {
@@ -98,15 +98,15 @@ export class WidgetExtensionFactory {
       }, {});
   }
 
-  private static getBaseActions(actionNames: string[] = []) {
+  private static getWidgetActions(actions: string[] = []) {
     return [
       WidgetExtensionFactory.filterActions(
-        WidgetExtensionFactory.BASE_COMMANDS,
-        actionNames
+        WidgetExtensionFactory.WIDGET_COMMANDS,
+        actions
       ),
       WidgetExtensionFactory.filterActions(
-        WidgetExtensionFactory.BASE_ATTRIBUTES,
-        actionNames
+        WidgetExtensionFactory.WIDGET_ATTRIBUTES,
+        actions
       ),
     ];
   }

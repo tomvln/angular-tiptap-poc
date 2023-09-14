@@ -1,5 +1,6 @@
 import { Injector } from '@angular/core';
 import { Node } from '@tiptap/core';
+import { WidgetAction } from '../core/widget-actions.enum';
 import { WidgetExtensionFactory } from '../core/widget-extension-factory';
 import { TweetWidgetComponent } from './tweet-widget.component';
 
@@ -29,7 +30,7 @@ const TweetWidgetExtension = (injector: Injector): Node =>
         default: null,
       },
     },
-    baseActions: ['align'],
+    actions: [WidgetAction.ALIGN],
   });
 
 export default TweetWidgetExtension;
