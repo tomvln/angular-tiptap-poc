@@ -1,4 +1,4 @@
-<div class="container" contenteditable="false">
+<div class="container" contenteditable="false" [ngClass]="classes ">
   <ng-content></ng-content>
   <div class="overlay" draggable="true" data-drag-handle>
     <small>Widget: {{ component.name }}</small>

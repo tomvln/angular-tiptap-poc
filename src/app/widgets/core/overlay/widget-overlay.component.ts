@@ -11,10 +11,17 @@ import { WidgetComponentInterface } from '../widget-component.interface';
 export class WidgetOverlayComponent implements OnInit {
   @Input('component') component: NodeViewProps & WidgetComponentInterface;
 
-  public classes: string[] = [];
+  public actionAttributes;
 
-  public ngOnInit(): void {
-    console.log(this.component.node.attrs);
-    //this.component.node.attrs.filter(attr => Object.values(WidgetAction).includes(attr)).map()
+  public get classes(): string[] {
+    return Object.entries(this.actionAttributes).map(
+      ([key, value]) => `${key}-${value}`
+    );
+  }
+
+  public ngOnInit() {
+    return Object.values(WidgetAction).map((action) => {
+      this.actionAttributes[action] = this.component.node.attrs[action];
+    });
   }
 }
