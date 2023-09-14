@@ -1,6 +1,6 @@
 import { Injector } from '@angular/core';
 import { Node } from '@tiptap/core';
-import { WidgetExtensionFactory } from '../base/widget-extension-factory';
+import { WidgetExtensionFactory } from '../core/widget-extension-factory';
 import { TweetWidgetComponent } from './tweet-widget.component';
 
 declare module '@tiptap/core' {
