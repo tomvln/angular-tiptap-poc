@@ -1,6 +1,6 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { BaseWidgetComponent } from '../base/base-widget.component';
-import { WidgetInterface } from '../widget.interface';
+import { WidgetInterface } from '../base/widget.interface';
 
 @Component({
   selector: 'app-tweet-widget',
