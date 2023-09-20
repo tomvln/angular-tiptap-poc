@@ -15,6 +15,9 @@ export const markdownitWidgetPlugin = (
     if (widgetStartPos < 0 || widgetStartPos + openingTag.length >= maxPos) {
       return false;
     }
+    console.log('options.name', options.name);
+    console.log('openingTag', openingTag);
+    console.log('closingContentTag', closingContentTag);
 
     const endParamsPos = state.src.indexOf(
       closingParamsTag,
@@ -47,6 +50,7 @@ export const markdownitWidgetPlugin = (
       // create token
       const token = state.push(options.name, '', 0);
       token.meta = { params, content };
+      console.log('token', token);
     }
 
     state.pos = options.withHash
@@ -60,6 +64,8 @@ export const markdownitWidgetPlugin = (
 
   md.renderer.rules[options.name] = function (tokens, idx) {
     const token = tokens[idx];
-    return `<app-${options.name}-widget ${token.meta.params}>${token.meta.content}</app-${options.name}-widget>`;
+    const renderedToken = `<app-${options.name}-widget ${token.meta.params}>${token.meta.content}</app-${options.name}-widget>`;
+    console.log('renderedToken', renderedToken);
+    return renderedToken;
   };
 };

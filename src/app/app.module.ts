@@ -8,9 +8,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { TweetWidgetComponent } from './widgets/tweet/tweet-widget.component';
 import { NgxTwitterWidgetsModule } from 'ngx-twitter-widgets';
 import { WidgetOverlayComponent } from './widgets/core/overlay/widget-overlay.component';
+import { FreeformWidgetComponent } from './widgets/freeform/freeform-widget.component';
 
 @NgModule({
-  declarations: [AppComponent, WidgetOverlayComponent, TweetWidgetComponent],
+  declarations: [
+    AppComponent,
+    WidgetOverlayComponent,
+    TweetWidgetComponent,
+    FreeformWidgetComponent,
+  ],
   imports: [
     CommonModule,
     BrowserModule,

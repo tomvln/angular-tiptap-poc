@@ -1,6 +1,7 @@
 // import * as content from './editor-content/editor-content.json';
 import { content } from './editor-content/editor-content.md';
 import TweetWidget from './widgets/tweet/tweet-widget.extension';
+import FreeformWidget from './widgets/freeform/freeform-widget.extension';
 import { Component, Injector, OnDestroy } from '@angular/core';
 import { Editor } from '@tiptap/core';
 import Document from '@tiptap/extension-document';
@@ -67,6 +68,7 @@ export class AppComponent implements OnDestroy {
       Markdown,
       // Widgets
       TweetWidget(this.injector),
+      FreeformWidget(this.injector),
     ],
     onSelectionUpdate: ({ editor }) => {
       const { state, storage } = editor;

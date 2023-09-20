@@ -12,13 +12,12 @@ export class FreeformWidgetComponent
   implements WidgetComponentInterface, OnInit
 {
   name = 'Freeform';
-  htmlContent: string;
 
   constructor() {
     super();
   }
 
   ngOnInit() {
-    this.htmlContent = this.node.content;
+    console.log('node', this.node.content.toString());
   }
 }
