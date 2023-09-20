@@ -40,7 +40,7 @@
     "@tiptap/extension-text": "2.1.8",
     "@tiptap/pm": "2.1.8",
     "events": "3.3.0",
-    "ngx-tiptap": "8.0.0",
+    "ngx-tiptap": "^9.0.2",
     "ngx-twitter-widgets": "1.0.3",
     "prettify-html": "0.0.2",
     "punycode": "^2.3.0",

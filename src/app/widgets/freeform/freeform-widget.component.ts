@@ -18,6 +18,6 @@ export class FreeformWidgetComponent
   }
 
   ngOnInit() {
-    console.log('node', this.node.content.toString());
+    console.log('node', this.node);
   }
 }

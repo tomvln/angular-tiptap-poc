@@ -13,6 +13,7 @@ export class WidgetOverlayComponent implements OnInit {
   public componentAttributes;
 
   public ngOnInit() {
-      this.componentAttributes = this.component.node.attrs;
+    console.log('node', this.component.node);
+    this.componentAttributes = this.component.node.attrs;
   }
 }

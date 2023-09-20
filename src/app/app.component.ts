@@ -1,4 +1,4 @@
-// import * as content from './editor-content/editor-content.json';
+//import * as content from './editor-content/editor-content.json';
 import { content } from './editor-content/editor-content.md';
 import TweetWidget from './widgets/tweet/tweet-widget.extension';
 import FreeformWidget from './widgets/freeform/freeform-widget.extension';

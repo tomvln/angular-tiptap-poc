@@ -1,6 +1,11 @@
 export const content = `
-<app-freeform-widget><h3>coucou</h3></app-freeform-widget>
-<app-freeform-widget><h3>courage</h3></app-freeform-widget>
+<p></p>
+<app-freeform-widget>coucou</app-freeform-widget>
+<app-freeform-widget><p>coucou</p></app-freeform-widget>
+<p></p>
+<app-freeform-widget><i>courage</i></app-freeform-widget>
+<app-freeform-widget><p>courage</p></app-freeform-widget>
+<p></p>
 `;
 
 /*
