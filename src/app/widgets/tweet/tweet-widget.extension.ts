@@ -17,13 +17,14 @@ const name = 'tweet';
 const TweetWidgetExtension = (injector: Injector): Node =>
   WidgetExtensionFactory.create(injector, {
     name,
+    withHash: false,
     component: TweetWidgetComponent,
     commands: {
       setTweet:
-        (attributes) =>
-        ({ commands }) => {
-          return commands.setNode(name, attributes);
-        },
+      (attributes) =>
+      ({ commands }) => {
+        return commands.setNode(name, attributes);
+      },
     },
     attributes: {
       id: {

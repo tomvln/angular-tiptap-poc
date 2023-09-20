@@ -31,9 +31,10 @@ export class WidgetExtensionFactory {
     injector,
     options: {
       name: string;
+      withHash?: boolean;
       component: any;
-      commands: any;
-      attributes: any;
+      commands?: any;
+      attributes?: any;
       actions?: string[];
     }
   ): Node => {
@@ -76,7 +77,7 @@ export class WidgetExtensionFactory {
               setup(markdownit) {
                 markdownit.use(markdownitWidgetPlugin, {
                   name: options.name,
-                  withHash: false,
+                  withHash: options.withHash,
                 });
               },
             },

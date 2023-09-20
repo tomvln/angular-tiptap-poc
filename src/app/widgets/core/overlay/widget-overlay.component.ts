@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NodeViewProps } from '@tiptap/core';
-import { WidgetAction } from '../widget-actions.enum';
 import { WidgetComponentInterface } from '../widget-component.interface';
 
 @Component({

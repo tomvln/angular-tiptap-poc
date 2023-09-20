@@ -1,3 +1,15 @@
+export const content = `Zora J Murff’s thought-provoking photographic work, which tackles Black representation in the US, has just gone [**on show at London’s Saatchi Gallery**](https://www.saatchigallery.com/exhibition/america_in_crisis).
+
+{{#freeform size="fullwidth" align="center" ratio="auto" }} <h1>test pour editer free form </h1> <h1>test pour editer free form </h1> <h1>test pour editer free form </h1> <h1>test pour editer free form </h1> <h1>test pour editer free form </h1> <h1>test pour editer free form </h1><h1>test pour editer free form </h1> <h3>test pour editer free form </h3> erreur sur les balises : <h1>test pour editer free form </h3> {{/freeform}}
+
+The show is born out of a 1960s photography concept of the same name, which explored the American Dream versus reality at a time of great change and division: the run-up to the election of Richard Nixon as president.
+
+{{tweet id="20" ratio="auto" align="center" size="fullwidth" caption="caption example" }}
+
+The battle for equality is one of the deeply rooted national debates explored within the exhibition, alongside gun control and topics such as the climate crisis and digital revolution.
+`;
+
+/*
 export const content = `“I’m talking about the commodification of race, like race as this thing that has been used to determine value.”
 
 Zora J Murff’s thought-provoking photographic work, which tackles Black representation in the US, has just gone [**on show at London’s Saatchi Gallery**](https://www.saatchigallery.com/exhibition/america_in_crisis).
@@ -61,3 +73,4 @@ Murff doesn’t have one key takeaway for those viewing his work in London. Rath
 
 **_‘America in Crisis,’_ organised by the Saatchi Gallery, runs from 21 January to 3 April 2022. The exhibition is curated by: Sophie Wright, Gregory Harris from Atlanta’s High Museum of Art, and academic Tara Pixley.**
 `;
+*/
