@@ -44,7 +44,7 @@ export class WidgetExtensionFactory {
     return Node.create({
       name: `${options.name}-widget`,
       group: 'block',
-      content: 'text*',
+      content: 'block?',
       draggable: true,
       selectable: true,
       atom: true,
@@ -53,9 +53,6 @@ export class WidgetExtensionFactory {
       },
       renderHTML({ HTMLAttributes }) {
         return [`app-${options.name}-widget`, HTMLAttributes, 0];
-      },
-      renderText(...args) {
-        return 'coucou';
       },
       addNodeView() {
         return AngularNodeViewRenderer(options.component, { injector });
