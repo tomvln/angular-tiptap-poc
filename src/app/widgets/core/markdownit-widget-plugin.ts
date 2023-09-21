@@ -51,12 +51,6 @@ export const markdownitWidgetPlugin = (
       .trim();
     console.log('paramsString', paramsString);
 
-    const params = paramsString
-      .match(/(\w+)="([^"]*)"/g)
-      ?.reduce((acc, attr) => {
-        return [...acc, attr.split('=')];
-      }, []);
-
     const content = options.withContent
       ? state.src.slice(endClosingParamsTagPos, endContentPos)
       : '';
@@ -64,9 +58,17 @@ export const markdownitWidgetPlugin = (
     // silent mode is for probing, and we should not output anything
     if (!silent) {
       // create token
-      const token = state.push(options.name, '', 0);
-      token.attrs = params;
-      token.content = escapeHTML(content);
+      const type = `${options.name}-widget`;
+      const tag = `app-${options.name}-widget`;
+      const token = new state.Token(type, tag, 0);
+      paramsString.match(/(\w+)="([^"]*)"/g)?.map((attr) => {
+        let [key, value] = attr.split('=');
+        token.attrSet(key, value.replace(/"/g, ''));
+      });
+      token.content = content;
+      state.tokens.push(token);
+      const contentToken = state.push('text', '', 0);
+      contentToken.content = content;
       console.log('token', token);
     }
 
@@ -77,14 +79,9 @@ export const markdownitWidgetPlugin = (
     return true;
   };
 
-  md.inline.ruler.before('emphasis', options.name, markdownitWidgetParser);
-
-  /*md.renderer.rules[options.name] = function (tokens, idx) {
-    const token = tokens[idx];
-    const renderedToken = `<app-${options.name}-widget ${
-      token.meta.params
-    }>${unescapeHTML(token.content)}</app-${options.name}-widget>`;
-    console.log('renderedToken', renderedToken);
-    return renderedToken;
-  };*/
+  md.inline.ruler.before(
+    'emphasis',
+    `${options.name}-widget`,
+    markdownitWidgetParser
+  );
 };

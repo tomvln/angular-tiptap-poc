@@ -12,12 +12,21 @@ export class FreeformWidgetComponent
   implements WidgetComponentInterface, OnInit
 {
   name = 'Freeform';
+  content: string;
 
   constructor() {
     super();
   }
 
   ngOnInit() {
-    //console.log('node', this.node);
+    console.log('node FreeformWidgetComponent', this.node);
+    console.log('node content FreeformWidgetComponent', this.node.content);
+    console.log(
+      'node content json FreeformWidgetComponent',
+      this.node.content.toJSON()[0].text
+    );
+    if (this.node.content.size) {
+      this.content = this.node.content.toJSON()[0].text;
+    }
   }
 }

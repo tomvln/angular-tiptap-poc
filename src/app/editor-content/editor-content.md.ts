@@ -1,3 +1,4 @@
+/*
 export const content = `
 
 {{#freeform}}<i>"test"</i>{{/freeform}}
@@ -26,8 +27,8 @@ export const content = `
 <app-freeform-widget><p>test</p></app-freeform-widget>
 <app-freeform-widget><p>test</p></app-freeform-widget>
 `;
+*/
 
-/*
 export const content = `Zora J Murff’s thought-provoking photographic work, which tackles Black representation in the US, has just gone [**on show at London’s Saatchi Gallery**](https://www.saatchigallery.com/exhibition/america_in_crisis).
 
 {{#freeform size="fullwidth" align="center" ratio="auto" }} <h1>test pour editer free form </h1> <h1>test pour editer free form </h1> <h1>test pour editer free form </h1> <h1>test pour editer free form </h1> <h1>test pour editer free form </h1> <h1>test pour editer free form </h1><h1>test pour editer free form </h1> <h3>test pour editer free form </h3> erreur sur les balises : <h1>test pour editer free form </h3> {{/freeform}}

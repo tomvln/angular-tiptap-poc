@@ -48,15 +48,13 @@ export class WidgetExtensionFactory {
       draggable: true,
       selectable: true,
       atom: true,
-      code: true,
-      whitespace: 'pre',
       parseHTML() {
         return [{ tag: `app-${options.name}-widget` }];
       },
       renderHTML({ HTMLAttributes }) {
         return [`app-${options.name}-widget`, HTMLAttributes, 0];
       },
-      renderText() {
+      renderText(...args) {
         return 'coucou';
       },
       addNodeView() {
