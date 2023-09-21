@@ -1,6 +1,6 @@
 //import * as content from './editor-content/editor-content.json';
 import { content } from './editor-content/editor-content.md';
-import ContentWidget from './widgets/core/content/content-widget.extension';
+import HtmlWidget from './widgets/core/html/html-widget.extension';
 import TweetWidget from './widgets/tweet/tweet-widget.extension';
 import FreeformWidget from './widgets/freeform/freeform-widget.extension';
 import { Component, Injector, OnDestroy } from '@angular/core';
@@ -68,7 +68,7 @@ export class AppComponent implements OnDestroy {
       }),
       Markdown,
       // Widgets
-      ContentWidget,
+      HtmlWidget,
       TweetWidget(this.injector),
       FreeformWidget(this.injector),
     ],

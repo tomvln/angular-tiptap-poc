@@ -44,7 +44,7 @@ export class WidgetExtensionFactory {
     return Node.create({
       name: `${options.name}-widget`,
       group: 'block',
-      content: 'block?',
+      content: 'inline?',
       draggable: true,
       selectable: true,
       atom: true,
