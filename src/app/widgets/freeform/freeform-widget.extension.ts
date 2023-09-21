@@ -17,7 +17,7 @@ const name = 'freeform';
 const FreeformWidgetExtension = (injector: Injector): Node =>
   WidgetExtensionFactory.create(injector, {
     name,
-    withHash: true,
+    withContent: true,
     component: FreeformWidgetComponent,
     commands: {
       setFreeform:

@@ -1,9 +1,9 @@
 export const markdownitWidgetPlugin = (
   md,
-  options: { name: string; withHash?: boolean }
+  options: { name: string; withContent?: boolean }
 ) => {
   const markdownitWidgetParser = (state, silent: boolean) => {
-    const openingTag = `{{${options.withHash ? '#' : ''}${options.name}`;
+    const openingTag = `{{${options.withContent ? '#' : ''}${options.name}`;
     const closingParamsTag = `}}`;
     const closingContentTag = `{{/${options.name}}}`;
 
@@ -15,9 +15,6 @@ export const markdownitWidgetPlugin = (
     if (widgetStartPos < 0 || widgetStartPos + openingTag.length >= maxPos) {
       return false;
     }
-    console.log('options.name', options.name);
-    console.log('openingTag', openingTag);
-    console.log('closingContentTag', closingContentTag);
 
     const endParamsPos = state.src.indexOf(
       closingParamsTag,
@@ -31,7 +28,7 @@ export const markdownitWidgetPlugin = (
 
     const endClosingParamsTagPos = endParamsPos + closingParamsTag.length;
 
-    const endContentPos = options.withHash
+    const endContentPos = options.withContent
       ? state.src.indexOf(closingContentTag, widgetStartPos + openingTag.length)
       : endClosingParamsTagPos;
 
@@ -41,7 +38,7 @@ export const markdownitWidgetPlugin = (
       .slice(widgetStartPos + openingTag.length, endParamsPos)
       .trim();
 
-    const content = options.withHash
+    const content = options.withContent
       ? state.src.slice(endClosingParamsTagPos, endContentPos)
       : '';
 
@@ -53,14 +50,14 @@ export const markdownitWidgetPlugin = (
       console.log('token', token);
     }
 
-    state.pos = options.withHash
+    state.pos = options.withContent
       ? endClosingContentTagPos
       : endClosingParamsTagPos;
 
     return true;
   };
 
-  md.inline.ruler.after('text', options.name, markdownitWidgetParser);
+  md.inline.ruler.before('emphasis', options.name, markdownitWidgetParser);
 
   md.renderer.rules[options.name] = function (tokens, idx) {
     const token = tokens[idx];

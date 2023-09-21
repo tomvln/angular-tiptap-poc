@@ -17,7 +17,7 @@ const name = 'tweet';
 const TweetWidgetExtension = (injector: Injector): Node =>
   WidgetExtensionFactory.create(injector, {
     name,
-    withHash: false,
+    withContent: false,
     component: TweetWidgetComponent,
     commands: {
       setTweet:

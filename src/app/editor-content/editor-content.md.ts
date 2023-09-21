@@ -1,36 +1,37 @@
 export const content = `
+
+{{#freeform}}<i>test</i>{{/freeform}}
+{{#freeform}}<p>test</p>{{/freeform}}
+{{#freeform}}<p>test</p>{{/freeform}}
+
+{{tweet id="20" ratio="auto" align="center" size="fullwidth" caption="caption example" }}
+
+## sdf
+
+
+sfsdf
+
+{{#freeform}}<p>test</p>{{/freeform}}
+{{#freeform}}<i>test</i>{{/freeform}}
+{{#freeform}}<p>test</p>{{/freeform}}
+`;
+
+/*
+export const content = `
 <p></p>
-<app-freeform-widget>coucou</app-freeform-widget>
-<app-freeform-widget><p>coucou</p></app-freeform-widget>
-<p></p>
-<app-freeform-widget><i>courage</i></app-freeform-widget>
-<app-freeform-widget><p>courage</p></app-freeform-widget>
-<p></p>
+<app-freeform-widget><p>test</p></app-freeform-widget>
+<app-freeform-widget><p>test</p></app-freeform-widget>
 `;
 
 /*
 export const content = `Zora J Murff’s thought-provoking photographic work, which tackles Black representation in the US, has just gone [**on show at London’s Saatchi Gallery**](https://www.saatchigallery.com/exhibition/america_in_crisis).
 
-{{#freeform size="fullwidth" align="center" ratio="auto" }}<p>test</p>{{/freeform}}
-{{#freeform size="fullwidth" align="center" ratio="auto" }}<p>test</p>{{/freeform}}
-{{#freeform size="fullwidth" align="center" ratio="auto" }} <h3>test pour editer free form </h3> <h3>test pour editer free form </h3> <h3>test pour editer free form </h3> <h3>test pour editer free form </h3> <h3>test pour editer free form </h3> <h3>test pour editer free form </h3><h3>test pour editer free form </h1> <h3>test pour editer free form </h3> erreur sur les balises : <h3>test pour editer free form </h3> {{/freeform}}
+{{#freeform size="fullwidth" align="center" ratio="auto" }} <h1>test pour editer free form </h1> <h1>test pour editer free form </h1> <h1>test pour editer free form </h1> <h1>test pour editer free form </h1> <h1>test pour editer free form </h1> <h1>test pour editer free form </h1><h1>test pour editer free form </h1> <h3>test pour editer free form </h3> erreur sur les balises : <h1>test pour editer free form </h3> {{/freeform}}
 
 The battle for equality is one of the deeply rooted national debates explored within the exhibition, alongside gun control and topics such as the climate crisis and digital revolution.
-
-
-
-
-
-{{#freeform size="fullwidth" align="center" ratio="auto" }}<h2>test</h2>{{/freeform}}
-{{#freeform size="fullwidth" align="center" ratio="auto" }}<h2>test</h2>{{/freeform}}
-{{#freeform size="fullwidth" align="center" ratio="auto" }}<p>test</p>{{/freeform}}
-{{#freeform size="fullwidth" align="center" ratio="auto" }}<p>test</p>{{/freeform}}
-{{#freeform size="fullwidth" align="center" ratio="auto" }}<p>test</p>{{/freeform}}
-{{#freeform size="fullwidth" align="center" ratio="auto" }}<p>test</p>{{/freeform}}
-{{#freeform size="fullwidth" align="center" ratio="auto" }}<h2>test</h2>{{/freeform}}
 `;
 
-
+/*
 export const content = `“I’m talking about the commodification of race, like race as this thing that has been used to determine value.”
 
 Zora J Murff’s thought-provoking photographic work, which tackles Black representation in the US, has just gone [**on show at London’s Saatchi Gallery**](https://www.saatchigallery.com/exhibition/america_in_crisis).

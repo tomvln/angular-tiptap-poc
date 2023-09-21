@@ -1,4 +1,4 @@
-import { Node } from '@tiptap/core';
+import { generateHTML, Node } from '@tiptap/core';
 import { AngularNodeViewRenderer } from 'ngx-tiptap';
 import { markdownitWidgetPlugin } from './markdownit-widget-plugin';
 import { WidgetActionAlign } from './widget-actions.enum';
@@ -31,7 +31,7 @@ export class WidgetExtensionFactory {
     injector,
     options: {
       name: string;
-      withHash?: boolean;
+      withContent?: boolean;
       component: any;
       commands?: any;
       attributes?: any;
@@ -44,10 +44,12 @@ export class WidgetExtensionFactory {
     return Node.create({
       name: `${options.name}-widget`,
       group: 'block',
-      content: 'block*',
+      content: 'text*',
       draggable: true,
       selectable: true,
       atom: true,
+      code: true,
+      whitespace: 'pre',
       parseHTML() {
         return [{ tag: `app-${options.name}-widget` }];
       },
@@ -77,9 +79,28 @@ export class WidgetExtensionFactory {
               setup(markdownit) {
                 markdownit.use(markdownitWidgetPlugin, {
                   name: options.name,
-                  withHash: options.withHash,
+                  withContent: options.withContent,
                 });
               },
+            },
+            serialize(state, node) {
+              const attrsString = Object.keys(node.attrs).reduce(
+                (p, c) => p + ` ${c}="${node.attrs[c]}"`,
+                ''
+              );
+              state.write(
+                `{{${options.withContent ? '#' : ''}${
+                  options.name
+                } ${attrsString} }}`
+              );
+
+              if (options.withContent) {
+                console.log('node', node);
+                state.write(node.content);
+                state.flushClose(1);
+                state.write(`{{/${options.name}}}`);
+              }
+              state.closeBlock(node);
             },
           },
         };
