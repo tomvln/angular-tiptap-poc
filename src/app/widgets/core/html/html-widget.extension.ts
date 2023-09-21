@@ -4,7 +4,7 @@ const name = 'content';
 
 const HtmlWidgetExtension = Text.extend({
   name: 'html',
-  group: 'block',
+  group: 'inline',
   renderText() {
     return '';
   },

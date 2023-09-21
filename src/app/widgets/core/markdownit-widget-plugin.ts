@@ -67,7 +67,7 @@ export const markdownitWidgetPlugin = (
       });
       token.content = content;
       state.tokens.push(token);
-      const contentToken = state.push('html', '', 0);
+      const contentToken = state.push('html', '');
       contentToken.content = content;
       console.log('token', token);
     }
