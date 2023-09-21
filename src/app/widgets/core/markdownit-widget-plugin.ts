@@ -61,7 +61,7 @@ export const markdownitWidgetPlugin = (
 
   md.renderer.rules[options.name] = function (tokens, idx) {
     const token = tokens[idx];
-    const renderedToken = `<app-${options.name}-widget ${token.meta.params}>${token.meta.content}</app-${options.name}-widget>`;
+    const renderedToken = `<app-${options.name}-widget ${token.meta.params}><pre>${token.meta.content}</pre></app-${options.name}-widget>`;
     console.log('renderedToken', renderedToken);
     return renderedToken;
   };

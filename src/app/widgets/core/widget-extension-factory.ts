@@ -1,4 +1,4 @@
-import { generateHTML, Node } from '@tiptap/core';
+import { Editor, generateHTML, Node } from '@tiptap/core';
 import { AngularNodeViewRenderer } from 'ngx-tiptap';
 import { markdownitWidgetPlugin } from './markdownit-widget-plugin';
 import { WidgetActionAlign } from './widget-actions.enum';
@@ -44,7 +44,7 @@ export class WidgetExtensionFactory {
     return Node.create({
       name: `${options.name}-widget`,
       group: 'block',
-      content: 'text*',
+      content: 'block*',
       draggable: true,
       selectable: true,
       atom: true,
@@ -55,6 +55,9 @@ export class WidgetExtensionFactory {
       },
       renderHTML({ HTMLAttributes }) {
         return [`app-${options.name}-widget`, HTMLAttributes, 0];
+      },
+      renderText() {
+        return 'coucou';
       },
       addNodeView() {
         return AngularNodeViewRenderer(options.component, { injector });
@@ -83,7 +86,10 @@ export class WidgetExtensionFactory {
                 });
               },
             },
-            serialize(state, node) {
+            serialize(state, node: Node, editor: Editor) {
+              console.log('node.options', node.options);
+              console.log('node.storage', node.storage);
+              /*
               const attrsString = Object.keys(node.attrs).reduce(
                 (p, c) => p + ` ${c}="${node.attrs[c]}"`,
                 ''
@@ -101,6 +107,7 @@ export class WidgetExtensionFactory {
                 state.write(`{{/${options.name}}}`);
               }
               state.closeBlock(node);
+              */
             },
           },
         };
