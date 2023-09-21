@@ -1,7 +1,9 @@
 export const content = `
 
-{{#freeform}}<i>test</i>{{/freeform}}
+{{#freeform}}<i>"test"</i>{{/freeform}}
+
 {{#freeform}}<p>test</p>{{/freeform}}
+
 {{#freeform}}<p>test</p>{{/freeform}}
 
 {{tweet id="20" ratio="auto" align="center" size="fullwidth" caption="caption example" }}
@@ -12,7 +14,9 @@ export const content = `
 sfsdf
 
 {{#freeform}}<p>test</p>{{/freeform}}
+
 {{#freeform}}<i>test</i>{{/freeform}}
+
 {{#freeform}}<p>test</p>{{/freeform}}
 `;
 

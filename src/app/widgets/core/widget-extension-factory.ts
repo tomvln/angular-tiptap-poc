@@ -44,7 +44,7 @@ export class WidgetExtensionFactory {
     return Node.create({
       name: `${options.name}-widget`,
       group: 'block',
-      content: 'block*',
+      content: 'text*',
       draggable: true,
       selectable: true,
       atom: true,
@@ -87,8 +87,6 @@ export class WidgetExtensionFactory {
               },
             },
             serialize(state, node: Node, editor: Editor) {
-              console.log('node.options', node.options);
-              console.log('node.storage', node.storage);
               /*
               const attrsString = Object.keys(node.attrs).reduce(
                 (p, c) => p + ` ${c}="${node.attrs[c]}"`,
