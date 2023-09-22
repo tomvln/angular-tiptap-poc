@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularNodeViewComponent } from 'ngx-tiptap';
 import { WidgetComponentInterface } from '../core/widget-component.interface';
+import { unescapeHTML } from '../../utils/unescape-html.util';
 
 @Component({
   selector: 'app-freeform-widget',
@@ -19,14 +20,6 @@ export class FreeformWidgetComponent
   }
 
   ngOnInit() {
-    console.log('node FreeformWidgetComponent', this.node);
-    console.log('node content FreeformWidgetComponent', this.node.content);
-    console.log(
-      'node content json FreeformWidgetComponent',
-      this.node.content.toJSON()[0].text
-    );
-    if (this.node.content.size) {
-      this.content = this.node.content.toJSON()[0].text;
-    }
+    this.content = unescapeHTML(this.node.attrs.content);
   }
 }

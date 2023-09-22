@@ -9,6 +9,8 @@
     <span class="material-symbols-sharp title"> widgets </span>
 
     <button (click)="setTweet()">Tweet</button>
+
+    <button (click)="openFreeformDialog()">Freeform</button>
   </div>
 </tiptap-floating-menu>
 
@@ -127,17 +129,25 @@
 </div>
 
 <!-- CONTENT -->
-<ngx-tabs>
-  <ngx-tab [active]="true" name="JSON">
+<p-tabView>
+  <p-tabPanel header="JSON">
     <pre>{{ stringify(editor.getJSON()) }}</pre>
-  </ngx-tab>
-  <ngx-tab name="HTML">
+  </p-tabPanel>
+  <p-tabPanel header="HTML">
     <pre>{{ formatHtml(editor.getHTML()) }}</pre>
-  </ngx-tab>
-  <ngx-tab name="Text">
+  </p-tabPanel>
+  <p-tabPanel header="Text">
     <pre>{{ editor.getText() }}</pre>
-  </ngx-tab>
-  <ngx-tab name="Markdown">
+  </p-tabPanel>
+  <p-tabPanel header="Markdown">
     <pre>{{ editor.storage.markdown.getMarkdown() }}</pre>
-  </ngx-tab>
-</ngx-tabs>
+  </p-tabPanel>
+</p-tabView>
+
+<!-- FREEFORM DIALOG -->
+<p-dialog header="Freeform" [(visible)]="isFreeformDialogOpen">
+  <textarea name="Freeform" id="freeform" cols="50" rows="10" #freeformInput></textarea>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="setFreeform(freeformInput.value); freeformInput.value = ''" label="Ok" styleClass="p-button-text"></p-button>
+</ng-template>
+</p-dialog>

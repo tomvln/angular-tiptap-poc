@@ -23,7 +23,7 @@ const TweetWidgetExtension = (injector: Injector): Node =>
       setTweet:
       (attributes) =>
       ({ commands }) => {
-        return commands.setNode(name, attributes);
+        return commands.setNode(`${name}-widget`, attributes);
       },
     },
     attributes: {

@@ -1,6 +1,5 @@
-//import * as content from './editor-content/editor-content.json';
+// import * as content from './editor-content/editor-content.json';
 import { content } from './editor-content/editor-content.md';
-import HtmlWidget from './widgets/core/html/html-widget.extension';
 import TweetWidget from './widgets/tweet/tweet-widget.extension';
 import FreeformWidget from './widgets/freeform/freeform-widget.extension';
 import { Component, Injector, OnDestroy } from '@angular/core';
@@ -21,11 +20,13 @@ import prettifyHTML from 'prettify-html';
 import Dropcursor from '@tiptap/extension-dropcursor';
 import Focus from '@tiptap/extension-focus';
 import Placeholder from '@tiptap/extension-placeholder';
+import { TrailingNode } from './widgets/core/trailing-node/trailing-node.extension';
 import { Markdown } from 'tiptap-markdown';
 import {
   WidgetAction,
   WidgetActionAlign,
 } from './widgets/core/widget-actions.enum';
+import { unescapeHTML } from './utils/unescape-html.util';
 
 @Component({
   selector: 'app-root',
@@ -66,9 +67,9 @@ export class AppComponent implements OnDestroy {
       Placeholder.configure({
         placeholder: 'Please enter the story text here…',
       }),
+      TrailingNode,
       Markdown,
       // Widgets
-      HtmlWidget,
       TweetWidget(this.injector),
       FreeformWidget(this.injector),
     ],
@@ -84,6 +85,8 @@ export class AppComponent implements OnDestroy {
 
   public widgetActionEnum = WidgetAction;
   public widgetActionAlignEnum = WidgetActionAlign;
+
+  public isFreeformDialogOpen = false
 
   constructor(private injector: Injector) {}
 
@@ -109,12 +112,25 @@ export class AppComponent implements OnDestroy {
     }
   }
 
+  public openFreeformDialog(): void {
+    this.isFreeformDialogOpen = true
+  }
+
+  public setFreeform(html: string): void {
+    if (html) {
+      html.replace(/\\n/gm, ' ')
+      this.editor.chain().focus().setFreeform({ content: html }).run();
+    }
+
+    this.isFreeformDialogOpen = false
+  }
+
   public stringify(value: any): string {
     return JSON.stringify(value, null, 2);
   }
 
   public formatHtml(html: string): string {
-    return prettifyHTML(html);
+    return prettifyHTML(unescapeHTML(html));
   }
 
   public isWidgetSelected(props): boolean {

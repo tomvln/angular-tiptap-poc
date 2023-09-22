@@ -7,7 +7,7 @@ import { FreeformWidgetComponent } from './freeform-widget.component';
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     freeform: {
-      setFreeform: (attributes: { id: string }) => ReturnType;
+      setFreeform: (attributes: { content: string }) => ReturnType;
     };
   }
 }
@@ -23,7 +23,7 @@ const FreeformWidgetExtension = (injector: Injector): Node =>
       setFreeform:
         (attributes) =>
         ({ commands }) => {
-          return commands.setNode(name, attributes);
+          return commands.setNode(`${name}-widget`, attributes);
         },
     },
     actions: [WidgetAction.ALIGN],

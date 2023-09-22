@@ -1,7 +1,9 @@
-import { Editor, generateHTML, Node } from '@tiptap/core';
+import { Node } from '@tiptap/core';
 import { AngularNodeViewRenderer } from 'ngx-tiptap';
-import { markdownitWidgetPlugin } from './markdownit-widget-plugin';
+import { markdownitWidgetPlugin } from './markdown-it/markdownit-widget-plugin';
 import { WidgetActionAlign } from './widget-actions.enum';
+import { unescapeHTML } from '../../utils/unescape-html.util';
+import { clone } from '../../utils/clone.util';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
@@ -36,10 +38,9 @@ export class WidgetExtensionFactory {
       commands?: any;
       attributes?: any;
       actions?: string[];
-    }
+    },
   ): Node => {
-    const [widgetCommands, widgetAttributes] =
-      WidgetExtensionFactory.getWidgetActions(options?.actions);
+    const [widgetCommands, widgetAttributes] = WidgetExtensionFactory.getWidgetActions(options?.actions);
 
     return Node.create({
       name: `${options.name}-widget`,
@@ -52,7 +53,10 @@ export class WidgetExtensionFactory {
         return [{ tag: `app-${options.name}-widget` }];
       },
       renderHTML({ HTMLAttributes }) {
-        return [`app-${options.name}-widget`, HTMLAttributes, 0];
+        const attributes = clone(HTMLAttributes);
+        const content = unescapeHTML(attributes.content);
+        delete attributes.content;
+        return [`app-${options.name}-widget`, attributes, content];
       },
       addNodeView() {
         return AngularNodeViewRenderer(options.component, { injector });
@@ -67,6 +71,11 @@ export class WidgetExtensionFactory {
         return {
           ...widgetAttributes,
           ...options.attributes,
+          ...(options.withContent && {
+            content: {
+              default: null,
+            },
+          }),
         };
       },
       addStorage() {
@@ -81,26 +90,29 @@ export class WidgetExtensionFactory {
                 });
               },
             },
-            serialize(state, node: Node, editor: Editor) {
-              /*
-              const attrsString = Object.keys(node.attrs).reduce(
-                (p, c) => p + ` ${c}="${node.attrs[c]}"`,
+            serialize(state, node) {
+              const attributes = clone(node.attrs);
+              const content = unescapeHTML(attributes.content)
+              delete attributes.content
+
+              const attrsString = Object.keys(attributes).reduce(
+                (p, c) => p + `${c}="${attributes[c]}" `,
                 ''
               );
+
               state.write(
                 `{{${options.withContent ? '#' : ''}${
                   options.name
-                } ${attrsString} }}`
+                } ${attrsString}}}`
               );
 
               if (options.withContent) {
-                console.log('node', node);
-                state.write(node.content);
+                state.write(content);
                 state.flushClose(1);
                 state.write(`{{/${options.name}}}`);
               }
+              
               state.closeBlock(node);
-              */
             },
           },
         };
@@ -110,9 +122,7 @@ export class WidgetExtensionFactory {
 
   private static filterActions(actions, keys: string[]) {
     return Object.keys(actions)
-      .filter((key: string) =>
-        keys.includes(key.toLowerCase().replace(/^set/, ''))
-      )
+      .filter((key: string) => keys.includes(key.toLowerCase().replace(/^set/, '')))
       .reduce((obj, key: string) => {
         return Object.assign(obj, {
           [key]: actions[key],
@@ -122,14 +132,8 @@ export class WidgetExtensionFactory {
 
   private static getWidgetActions(actions: string[] = []) {
     return [
-      WidgetExtensionFactory.filterActions(
-        WidgetExtensionFactory.WIDGET_COMMANDS,
-        actions
-      ),
-      WidgetExtensionFactory.filterActions(
-        WidgetExtensionFactory.WIDGET_ATTRIBUTES,
-        actions
-      ),
+      WidgetExtensionFactory.filterActions(WidgetExtensionFactory.WIDGET_COMMANDS, actions),
+      WidgetExtensionFactory.filterActions(WidgetExtensionFactory.WIDGET_ATTRIBUTES, actions),
     ];
   }
 }
