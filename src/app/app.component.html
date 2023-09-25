@@ -1,153 +1,129 @@
-<h1>Angular TipTap POC</h1>
+<div class="editor-container">
+  <h1>Angular TipTap POC</h1>
 
-<!-- EDITOR -->
-<tiptap-editor [editor]="editor" [(ngModel)]="content"></tiptap-editor>
+  <!-- EDITOR -->
+  <tiptap-editor [editor]="editor" [(ngModel)]="content"></tiptap-editor>
 
-<!-- NEW LINE MENU -->
-<tiptap-floating-menu [editor]="editor">
-  <div class="floating-menu">
-    <span class="material-symbols-sharp title"> widgets </span>
+  <!-- NEW LINE MENU -->
+  <tiptap-floating-menu [editor]="editor">
+    <div class="floating-menu">
+      <span class="material-symbols-sharp title"> widgets </span>
 
-    <button (click)="setTweet()">Tweet</button>
+      <button (click)="setTweet()">Tweet</button>
 
-    <button (click)="openFreeformDialog()">Freeform</button>
-  </div>
-</tiptap-floating-menu>
+      <button (click)="openFreeformDialog()">Freeform</button>
+    </div>
+  </tiptap-floating-menu>
 
-<!-- TEXT SELECTION MENU -->
-<tiptap-bubble-menu
-  [editor]="editor"
-  [pluginKey]="'text-menu'"
-  [shouldShow]="isTextSelected"
->
-  <div class="bubble-menu">
-    <button
-      (click)="editor.chain().focus().toggleBold().run()"
-      [ngClass]="{ active: editor.isActive('bold') }"
-    >
-      <span class="material-symbols-sharp"> format_bold </span>
-    </button>
-
-    <button
-      (click)="editor.chain().focus().toggleItalic().run()"
-      [ngClass]="{ active: editor.isActive('italic') }"
-    >
-      <span class="material-symbols-sharp"> format_italic </span>
-    </button>
-
-    <button
-      (click)="editor.chain().focus().toggleBulletList().run()"
-      [ngClass]="{ active: editor.isActive('bulletList') }"
-    >
-      <span class="material-symbols-sharp"> format_list_bulleted </span>
-    </button>
-
-    <button
-      (click)="editor.chain().focus().toggleOrderedList().run()"
-      [ngClass]="{ active: editor.isActive('orderedList') }"
-    >
-      <span class="material-symbols-sharp"> format_list_numbered </span>
-    </button>
-
-    <button (click)="setLink()" [ngClass]="{ active: editor.isActive('link') }">
-      <span class="material-symbols-sharp"> add_link </span>
-    </button>
-
-    <button
-      (click)="editor.chain().focus().toggleHeading({ level: 2 }).run()"
-      [ngClass]="{ active: editor.isActive('heading', { level: 2 }) }"
-    >
-      <span class="material-symbols-sharp"> format_h2 </span>
-    </button>
-
-    <button
-      (click)="editor.chain().focus().toggleHeading({ level: 3 }).run()"
-      [ngClass]="{ active: editor.isActive('heading', { level: 3 }) }"
-    >
-      <span class="material-symbols-sharp"> format_h3 </span>
-    </button>
-  </div>
-</tiptap-bubble-menu>
-
-<!-- WIDGET SELECTION MENU -->
-<tiptap-bubble-menu
-  #menu
-  [editor]="editor"
-  [pluginKey]="'widget-menu'"
-  [shouldShow]="isWidgetSelected"
->
-  <div class="bubble-menu">
-    <ng-container *ngIf="selectedWidgetHasAction(widgetActionEnum.ALIGN)">
-      <button
-        (click)="
-          editor.chain().focus().setAlign(widgetActionAlignEnum.LEFT).run()
-        "
-        [ngClass]="{
-          active: editor.isActive({ align: widgetActionAlignEnum.LEFT })
-        }"
-      >
-        <span class="material-symbols-sharp"> format_align_left </span>
+  <!-- TEXT SELECTION MENU -->
+  <tiptap-bubble-menu [editor]="editor" [pluginKey]="'text-menu'" [shouldShow]="isTextSelected">
+    <div class="bubble-menu">
+      <button (click)="editor.chain().focus().toggleBold().run()" [ngClass]="{ active: editor.isActive('bold') }">
+        <span class="material-symbols-sharp"> format_bold </span>
       </button>
 
-      <button
-        (click)="
-          editor.chain().focus().setAlign(widgetActionAlignEnum.CENTER).run()
-        "
-        [ngClass]="{
-          active: editor.isActive({ align: widgetActionAlignEnum.CENTER })
-        }"
-      >
-        <span class="material-symbols-sharp"> format_align_center </span>
+      <button (click)="editor.chain().focus().toggleItalic().run()" [ngClass]="{ active: editor.isActive('italic') }">
+        <span class="material-symbols-sharp"> format_italic </span>
       </button>
 
-      <button
-        (click)="
-          editor.chain().focus().setAlign(widgetActionAlignEnum.RIGHT).run()
-        "
-        [ngClass]="{
-          active: editor.isActive({ align: widgetActionAlignEnum.RIGHT })
-        }"
-      >
-        <span class="material-symbols-sharp"> format_align_right </span>
+      <button (click)="editor.chain().focus().toggleBulletList().run()" [ngClass]="{ active: editor.isActive('bulletList') }">
+        <span class="material-symbols-sharp"> format_list_bulleted </span>
       </button>
-    </ng-container>
 
-    <button (click)="editor.chain().focus().createParagraphNear().run()">
-      <span class="material-symbols-sharp"> format_paragraph </span>
-    </button>
+      <button (click)="editor.chain().focus().toggleOrderedList().run()" [ngClass]="{ active: editor.isActive('orderedList') }">
+        <span class="material-symbols-sharp"> format_list_numbered </span>
+      </button>
 
-    <button (click)="editor.chain().focus().deleteSelection().run()">
-      <span class="material-symbols-sharp"> delete </span>
-    </button>
+      <button (click)="setLink()" [ngClass]="{ active: editor.isActive('link') }">
+        <span class="material-symbols-sharp"> add_link </span>
+      </button>
+
+      <button (click)="editor.chain().focus().toggleHeading({ level: 2 }).run()" [ngClass]="{ active: editor.isActive('heading', { level: 2 }) }">
+        <span class="material-symbols-sharp"> format_h2 </span>
+      </button>
+
+      <button (click)="editor.chain().focus().toggleHeading({ level: 3 }).run()" [ngClass]="{ active: editor.isActive('heading', { level: 3 }) }">
+        <span class="material-symbols-sharp"> format_h3 </span>
+      </button>
+    </div>
+  </tiptap-bubble-menu>
+
+  <!-- WIDGET SELECTION MENU -->
+  <tiptap-bubble-menu [editor]="editor" [pluginKey]="'widget-menu'" [shouldShow]="isWidgetSelected">
+    <div class="bubble-menu">
+      <ng-container *ngIf="selectedWidgetHasAction(widgetActionEnum.ALIGN)">
+        <button
+          (click)="editor.chain().focus().setAlign(widgetActionAlignEnum.LEFT).run()"
+          [ngClass]="{
+            active: editor.isActive({ align: widgetActionAlignEnum.LEFT })
+          }"
+        >
+          <span class="material-symbols-sharp"> format_align_left </span>
+        </button>
+
+        <button
+          (click)="editor.chain().focus().setAlign(widgetActionAlignEnum.CENTER).run()"
+          [ngClass]="{
+            active: editor.isActive({ align: widgetActionAlignEnum.CENTER })
+          }"
+        >
+          <span class="material-symbols-sharp"> format_align_center </span>
+        </button>
+
+        <button
+          (click)="editor.chain().focus().setAlign(widgetActionAlignEnum.RIGHT).run()"
+          [ngClass]="{
+            active: editor.isActive({ align: widgetActionAlignEnum.RIGHT })
+          }"
+        >
+          <span class="material-symbols-sharp"> format_align_right </span>
+        </button>
+      </ng-container>
+
+      <button (click)="editor.chain().focus().createParagraphNear().run()">
+        <span class="material-symbols-sharp"> format_paragraph </span>
+      </button>
+
+      <button (click)="editor.chain().focus().deleteSelection().run()">
+        <span class="material-symbols-sharp"> delete </span>
+      </button>
+    </div>
+  </tiptap-bubble-menu>
+
+  <!-- COUNTERS -->
+  <div class="counts">
+    <p>{{ editor.storage.characterCount.characters() }} characters</p>
+    <p>{{ editor.storage.characterCount.words() }} words</p>
   </div>
-</tiptap-bubble-menu>
-
-<!-- COUNTERS -->
-<div class="counts">
-  <p>{{ editor.storage.characterCount.characters() }} characters</p>
-  <p>{{ editor.storage.characterCount.words() }} words</p>
 </div>
 
 <!-- CONTENT -->
-<p-tabView>
-  <p-tabPanel header="JSON">
-    <pre>{{ stringify(editor.getJSON()) }}</pre>
-  </p-tabPanel>
-  <p-tabPanel header="HTML">
-    <pre>{{ formatHtml(editor.getHTML()) }}</pre>
-  </p-tabPanel>
-  <p-tabPanel header="Text">
-    <pre>{{ editor.getText() }}</pre>
-  </p-tabPanel>
-  <p-tabPanel header="Markdown">
-    <pre>{{ editor.storage.markdown.getMarkdown() }}</pre>
-  </p-tabPanel>
-</p-tabView>
+<div class="content-container">
+  <p-tabView>
+    <p-tabPanel header="JSON">
+      <pre>{{ stringify(editor.getJSON()) }}</pre>
+    </p-tabPanel>
+    <p-tabPanel header="HTML">
+      <pre>{{ formatHtml(editor.getHTML()) }}</pre>
+    </p-tabPanel>
+    <p-tabPanel header="Text">
+      <pre>{{ editor.getText() }}</pre>
+    </p-tabPanel>
+    <p-tabPanel header="Markdown">
+      <pre>{{ editor.storage.markdown.getMarkdown() }}</pre>
+    </p-tabPanel>
+  </p-tabView>
 
-<!-- FREEFORM DIALOG -->
-<p-dialog header="Freeform" [(visible)]="isFreeformDialogOpen">
-  <textarea name="Freeform" id="freeform" cols="50" rows="10" #freeformInput></textarea>
-  <ng-template pTemplate="footer">
-    <p-button icon="pi pi-check" (click)="setFreeform(freeformInput.value); freeformInput.value = ''" label="Ok" styleClass="p-button-text"></p-button>
-</ng-template>
-</p-dialog>
+  <!-- FREEFORM DIALOG -->
+  <p-dialog header="Freeform" [(visible)]="isFreeformDialogOpen">
+    <textarea name="Freeform" id="freeform" cols="50" rows="10" #freeformInput></textarea>
+    <ng-template pTemplate="footer">
+      <p-button
+        icon="pi pi-check"
+        (click)="setFreeform(freeformInput.value); freeformInput.value = ''"
+        label="Ok"
+        styleClass="p-button-text"
+      ></p-button>
+    </ng-template>
+  </p-dialog>
+</div>
